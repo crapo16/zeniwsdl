@@ -1,0 +1,1458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ZeniWSDL" targetNamespace="http://www.zeni.com.ar/ZeniAdminWSDL/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.zeni.com.ar/ZeniAdminWSDL/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.zeni.com.ar/ZeniAdminWSDL/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    		<xsd:complexType name="NormCromType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="id" type="tns:IdType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="prod" type="tns:DescripcionType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="normvig" type="tns:DescripcionType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="fileNorma" type="tns:DescripcionType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="fileTMPS" type="tns:DescripcionType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="fileNormaId" type="tns:IdType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="fileTMPSId" type="tns:IdType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ArrayOfNormCromType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="normas" type="tns:NormCromType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="AdminCuentaType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="id" type="tns:IdType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="desc" type="tns:DescripcionType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="nro" type="tns:DescripcionType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ArrayOfAdminCuentaType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="cuentas" type="tns:AdminCuentaType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="NewsType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="id" type="tns:IdType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="desc" type="tns:DescripcionType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="fecha" type="tns:FechaTimeType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ArrayOfNewsType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="news" type="tns:NewsType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="FilesType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="id" type="tns:IdType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="ext" type="tns:DescripcionType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="name" type="tns:DescripcionType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="name_ext" type="tns:DescripcionType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="desc" type="tns:DescripcionType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="mess" type="tns:DescripcionType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="catId" type="tns:IdType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="fecha" type="tns:FechaTimeType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ArrayOfFilesType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="files" type="tns:FilesType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="addUsuario">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="clienteId" type="tns:IdType"/>
+						<xsd:element minOccurs="1" name="username" type="tns:DescripcionType"/>
+						<xsd:element minOccurs="1" name="name" type="tns:DescripcionType"/>
+						<xsd:element minOccurs="1" name="lastName" type="tns:DescripcionType"/>
+						<xsd:element minOccurs="1" name="email" type="tns:DescripcionType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="AdminClienteType">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" name="id" type="tns:IdType"/>
+					<xsd:element minOccurs="1" name="username" type="tns:DescripcionType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ClienteCompletoType">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" name="id" type="tns:IdType"/>
+					<xsd:element minOccurs="1" name="username" type="tns:DescripcionType"/>
+					<xsd:element minOccurs="1" name="name" type="tns:DescripcionType"/>
+					<xsd:element minOccurs="1" name="lastName" type="tns:DescripcionType"/>
+					<xsd:element minOccurs="1" name="email" type="tns:DescripcionType"/>
+					<xsd:element minOccurs="1" name="cuentas" type="tns:ArrayOfAdminCuentaType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ArrayOfAdminClienteType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="clientes" type="tns:AdminClienteType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="AyudaType">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" name="id" type="tns:IdType"/>
+					<xsd:element minOccurs="1" name="pregunta" type="tns:DescripcionType"/>
+					<xsd:element minOccurs="1" name="respuesta" type="tns:DescripcionType"/>
+					<xsd:element minOccurs="1" name="orden" type="xsd:int"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ArrayOfAyudaType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="ayus" type="tns:AyudaType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="CategoryType">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" name="id" type="tns:IdType"/>
+					<xsd:element minOccurs="1" name="desc" type="tns:DescripcionType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ArrayOfCategoryType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="categs" type="tns:CategoryType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="FileType">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" name="id" type="tns:IdType"/>
+					<xsd:element minOccurs="1" name="data" type="xsd:base64Binary"/>
+					<xsd:element minOccurs="1" name="nombre_con_extension" type="xsd:string"/>
+					<xsd:element minOccurs="1" name="nombre" type="xsd:string"/>
+					<xsd:element minOccurs="1" name="extension" type="xsd:string"/>
+					<xsd:element minOccurs="1" name="description" type="tns:DescripcionType"/>
+					<xsd:element minOccurs="1" name="message" type="tns:DescripcionType"/>
+					<xsd:element minOccurs="1" name="tamanio" type="xsd:int"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:simpleType name="FechaType">
+				<xsd:restriction base="xsd:dateTime"/>
+			</xsd:simpleType>
+			<xsd:complexType name="FechaTimeType">
+				<xsd:sequence>
+					<xsd:element minOccurs="1" name="fecha" type="tns:FechaType">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:simpleType name="IdType">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1"/>
+					<xsd:maxLength value="19"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="DescripcionType">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="0"/>
+					<xsd:maxLength value="255"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:complexType name="IdDescripcionType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="id" type="tns:IdType"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="descripcion" type="tns:DescripcionType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="FaultType">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="mensaje" type="xsd:string"/>
+						<xsd:element minOccurs="1" name="codigoError" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addUsuarioResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="cloneUsuario">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="clienteId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="cloneUsuarioResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtCuentas">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="clienteId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtCuentasResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:ArrayOfAdminCuentaType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="modCliente">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="clienteId" type="tns:IdType"/>
+						<xsd:element minOccurs="1" name="username" type="tns:DescripcionType"/>
+						<xsd:element minOccurs="1" name="name" type="tns:DescripcionType"/>
+						<xsd:element minOccurs="1" name="lastName" type="tns:DescripcionType"/>
+						<xsd:element minOccurs="1" name="email" type="tns:DescripcionType"/>
+						<xsd:element minOccurs="1" name="cuentas" type="tns:ArrayOfAdminCuentaType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="modClienteResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delCliente">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="clienteId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delClienteResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="resetPassCliente">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="clienteId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="resetPassClienteResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:DescripcionType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtClientes">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="clienteId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtClientesResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="pass" type="tns:ArrayOfAdminClienteType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtClienteCompleto">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="clienteId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtClienteCompletoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="clienteComp" type="tns:ClienteCompletoType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="uploadFile">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="file" type="tns:FileType"/>
+						<xsd:element minOccurs="1" name="category" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="uploadFileResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="downloadFile">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="fileId" type="tns:IdType"/>
+						<xsd:element minOccurs="1" name="category" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="downloadFileResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="file" type="tns:FileType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtAyuda">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="ayudaId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtAyudaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="ayudas" type="tns:ArrayOfAyudaType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addAyuda">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="ayuda" type="tns:AyudaType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addAyudaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:DescripcionType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="modAyuda">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="ayuda" type="tns:AyudaType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="modAyudaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:DescripcionType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delAyuda">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="ayudaId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delAyudaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:DescripcionType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtCategories">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="catId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtCategoriesResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:ArrayOfCategoryType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtNews">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="newId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtNewsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:ArrayOfNewsType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delNews">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="newsId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delNewsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="modNews">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="news" type="tns:NewsType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="modNewsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addNews">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="news" type="tns:NewsType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addNewsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtFiles">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="fileId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtFilesResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:ArrayOfFilesType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="modFiles">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="file" type="tns:FilesType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="modFilesResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="fileId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delFile">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="fileId" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delFileResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="outFile" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addNormCrom">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="norm" type="tns:NormCromType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addNormCromResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delNormCrom">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="norm" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delNormCromResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="modNormCrom">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="norm" type="tns:NormCromType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="modNormCromResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtNormCrom">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="norm" type="tns:IdType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtNormCromResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="tns:ArrayOfNormCromType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addNovedad">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="in" type="tns:NovedadType" maxOccurs="1" minOccurs="1"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addNovedadResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="out" type="tns:DescripcionType"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delNovedad">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="idNovedad" type="tns:IdType" maxOccurs="1" minOccurs="1"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="delNovedadResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="out" type="tns:DescripcionType"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="modNovedad">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="in" type="tns:NovedadType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="modNovedadResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="out" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:complexType name="NovedadType">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:string"></xsd:element>
+					<xsd:element name="title" type="xsd:string"></xsd:element>
+					<xsd:element name="description" type="xsd:string"></xsd:element>
+					<xsd:element name="date" type="tns:FechaTimeType"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ArrayOfNovedadType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="novedades" type="tns:NovedadType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="obtNovedad">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="novedadId" type="tns:IdType"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="obtNovedadResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="out"
+							type="tns:ArrayOfNovedadType" maxOccurs="1" minOccurs="1">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="modFilesResponse">
+    <wsdl:part name="parameters" element="tns:modFilesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delAyudaRequest">
+    <wsdl:part name="parameters" element="tns:delAyuda">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addNewsRequest">
+    <wsdl:part name="parameters" element="tns:addNews">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtClienteCompletoRequest">
+    <wsdl:part name="parameters" element="tns:obtClienteCompleto">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addNormCromResponse">
+    <wsdl:part name="parameters" element="tns:addNormCromResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resetPassClienteResponse">
+    <wsdl:part name="parameters" element="tns:resetPassClienteResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modClienteRequest">
+    <wsdl:part name="parameters" element="tns:modCliente">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtNewsRequest">
+    <wsdl:part name="parameters" element="tns:obtNews">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtClienteCompletoResponse">
+    <wsdl:part name="parameters" element="tns:obtClienteCompletoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modClienteResponse">
+    <wsdl:part name="parameters" element="tns:modClienteResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtNormCromResponse">
+    <wsdl:part name="parameters" element="tns:obtNormCromResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadFileRequest">
+    <wsdl:part name="parameters" element="tns:downloadFile">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delAyudaResponse">
+    <wsdl:part name="parameters" element="tns:delAyudaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delClienteRequest">
+    <wsdl:part name="parameters" element="tns:delCliente">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUsuarioResponse">
+    <wsdl:part name="parameters" element="tns:addUsuarioResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delNormCromRequest">
+    <wsdl:part name="parameters" element="tns:delNormCrom">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAyudaResponse">
+    <wsdl:part name="parameters" element="tns:addAyudaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtClientesResponse">
+    <wsdl:part name="parameters" element="tns:obtClientesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAyudaRequest">
+    <wsdl:part name="parameters" element="tns:addAyuda">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtCategoriesRequest">
+    <wsdl:part name="parameters" element="tns:obtCategories">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addNewsResponse">
+    <wsdl:part name="parameters" element="tns:addNewsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtCuentasResponse">
+    <wsdl:part name="parameters" element="tns:obtCuentasResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtNewsResponse">
+    <wsdl:part name="parameters" element="tns:obtNewsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtNormCromRequest">
+    <wsdl:part name="parameters" element="tns:obtNormCrom">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUsuarioRequest">
+    <wsdl:part name="parameters" element="tns:addUsuario">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modAyudaResponse">
+    <wsdl:part name="parameters" element="tns:modAyudaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modNewsResponse">
+    <wsdl:part name="parameters" element="tns:modNewsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delNewsResponse">
+    <wsdl:part name="parameters" element="tns:delNewsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delNormCromResponse">
+    <wsdl:part name="parameters" element="tns:delNormCromResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addNormCromRequest">
+    <wsdl:part name="parameters" element="tns:addNormCrom">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtAyudaResponse">
+    <wsdl:part name="parameters" element="tns:obtAyudaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cloneUsuarioResponse">
+    <wsdl:part name="parameters" element="tns:cloneUsuarioResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="downloadFileResponse">
+    <wsdl:part name="parameters" element="tns:downloadFileResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="uploadFileRequest">
+    <wsdl:part name="parameters" element="tns:uploadFile">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modNormCromRequest">
+    <wsdl:part name="parameters" element="tns:modNormCrom">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtAyudaRequest">
+    <wsdl:part name="parameters" element="tns:obtAyuda">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modNewsRequest">
+    <wsdl:part name="parameters" element="tns:modNews">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modFilesRequest">
+    <wsdl:part name="parameters" element="tns:modFiles">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="uploadFileResponse">
+    <wsdl:part name="parameters" element="tns:uploadFileResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delFileResponse">
+    <wsdl:part name="parameters" element="tns:delFileResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtCategoriesResponse">
+    <wsdl:part name="parameters" element="tns:obtCategoriesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="FaultType">
+    <wsdl:part name="parameters" element="tns:FaultType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modAyudaRequest">
+    <wsdl:part name="parameters" element="tns:modAyuda">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delFileRequest">
+    <wsdl:part name="parameters" element="tns:delFile">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modNormCromResponse">
+    <wsdl:part name="parameters" element="tns:modNormCromResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtClientesRequest">
+    <wsdl:part name="parameters" element="tns:obtClientes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtCuentasRequest">
+    <wsdl:part name="parameters" element="tns:obtCuentas">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtFilesResponse">
+    <wsdl:part name="parameters" element="tns:obtFilesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtFilesRequest">
+    <wsdl:part name="parameters" element="tns:obtFiles">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delNewsRequest">
+    <wsdl:part name="parameters" element="tns:delNews">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delClienteResponse">
+    <wsdl:part name="parameters" element="tns:delClienteResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cloneUsuarioRequest">
+    <wsdl:part name="parameters" element="tns:cloneUsuario">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resetPassClienteRequest">
+    <wsdl:part name="parameters" element="tns:resetPassCliente">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addNovedadRequest">
+  	<wsdl:part name="parameters" element="tns:addNovedad"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addNovedadResponse">
+  	<wsdl:part name="parameters" element="tns:addNovedadResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delNovedadRequest">
+  	<wsdl:part name="parameters" element="tns:delNovedad"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delNovedadResponse">
+  	<wsdl:part name="parameters" element="tns:delNovedadResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtNovedadRequest">
+  	<wsdl:part name="parameters" element="tns:obtNovedad"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtNovedadResponse">
+  	<wsdl:part name="parameters" element="tns:obtNovedadResponse"></wsdl:part>
+  </wsdl:message>
+    <wsdl:message name="modNovedadRequest">
+  	<wsdl:part name="parameters" element="tns:modNovedad"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modNovedadResponse">
+  	<wsdl:part name="parameters" element="tns:modNovedadResponse"></wsdl:part>
+  </wsdl:message>
+
+
+  <wsdl:portType name="ZeniAdminWSDL">
+    <wsdl:operation name="addUsuario">
+      <wsdl:input message="tns:addUsuarioRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:addUsuarioResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="cloneUsuario">
+      <wsdl:input message="tns:cloneUsuarioRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:cloneUsuarioResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtCategories">
+      <wsdl:input message="tns:obtCategoriesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:obtCategoriesResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtCuentas">
+      <wsdl:input message="tns:obtCuentasRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:obtCuentasResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modCliente">
+      <wsdl:input message="tns:modClienteRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:modClienteResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delCliente">
+      <wsdl:input message="tns:delClienteRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:delClienteResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtClienteCompleto">
+      <wsdl:input message="tns:obtClienteCompletoRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:obtClienteCompletoResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="resetPassCliente">
+      <wsdl:input message="tns:resetPassClienteRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:resetPassClienteResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtClientes">
+      <wsdl:input message="tns:obtClientesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:obtClientesResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadFile">
+      <wsdl:input message="tns:downloadFileRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:downloadFileResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modFiles">
+      <wsdl:input message="tns:modFilesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:modFilesResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="uploadFile">
+      <wsdl:input message="tns:uploadFileRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:uploadFileResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addAyuda">
+      <wsdl:input message="tns:addAyudaRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:addAyudaResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modAyuda">
+      <wsdl:input message="tns:modAyudaRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:modAyudaResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delAyuda">
+      <wsdl:input message="tns:delAyudaRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:delAyudaResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtAyuda">
+      <wsdl:input message="tns:obtAyudaRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:obtAyudaResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtNews">
+      <wsdl:input message="tns:obtNewsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:obtNewsResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delNews">
+      <wsdl:input message="tns:delNewsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:delNewsResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modNews">
+      <wsdl:input message="tns:modNewsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:modNewsResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtFiles">
+      <wsdl:input message="tns:obtFilesRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:obtFilesResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delFile">
+      <wsdl:input message="tns:delFileRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:delFileResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addNews">
+      <wsdl:input message="tns:addNewsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:addNewsResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modNormCrom">
+      <wsdl:input message="tns:modNormCromRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:modNormCromResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addNormCrom">
+      <wsdl:input message="tns:addNormCromRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:addNormCromResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delNormCrom">
+      <wsdl:input message="tns:delNormCromRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:delNormCromResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtNormCrom">
+      <wsdl:input message="tns:obtNormCromRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:obtNormCromResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addNovedad">
+    	<wsdl:input message="tns:addNovedadRequest"></wsdl:input>
+    	<wsdl:output message="tns:addNovedadResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="tns:FaultType"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delNovedad">
+    	<wsdl:input message="tns:delNovedadRequest"></wsdl:input>
+    	<wsdl:output message="tns:delNovedadResponse"></wsdl:output>
+    	 <wsdl:fault name="fault" message="tns:FaultType"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtNovedad">
+    	<wsdl:input message="tns:obtNovedadRequest"></wsdl:input>
+    	<wsdl:output message="tns:obtNovedadResponse"></wsdl:output>
+    	 <wsdl:fault name="fault" message="tns:FaultType"></wsdl:fault>
+    </wsdl:operation>
+
+        <wsdl:operation name="modNovedad">
+      <wsdl:input message="tns:modNovedadRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:modNovedadResponse">
+    </wsdl:output>
+      <wsdl:fault name="fault" message="tns:FaultType">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+  <wsdl:binding name="ZeniAdminWSDLSOAP" type="tns:ZeniAdminWSDL">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addUsuario">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/addUsuario"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="cloneUsuario">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/cloneUsuario"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtCuentas">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/obtCuentas"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modCliente">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/modCliente"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delCliente">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/delCliente"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="resetPassCliente">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/resetPassCliente"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtClientes">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/obtClientes"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtClienteCompleto">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/obtClienteCompleto"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="uploadFile">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/uploadFile"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="downloadFile">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/downloadFile"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtCategories">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/obtCategories"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addAyuda">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/addAyuda"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtAyuda">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/obtAyuda"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delAyuda">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/delAyuda"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modFiles">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/modFiles"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modAyuda">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/modAyuda"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addNews">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/addNews"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modNews">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/modNews"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delNews">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/delNews"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtNews">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/obtNews"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtFiles">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/obtFiles"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delFile">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/delFile"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="obtNormCrom">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/obtNormCrom"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delNormCrom">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/delNormCrom"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modNormCrom">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/modNormCrom"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addNormCrom">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/addNormCrom"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="addNovedad">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/addNovedad"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+
+   <wsdl:operation name="delNovedad">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/delNovedad"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+      <wsdl:operation name="obtNovedad">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/obtNovedad"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+       <wsdl:operation name="modNovedad">
+      <soap:operation soapAction="http://www.zeni.com.ar/ZeniAdminWSDL/modNovedad"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+
+
+  </wsdl:binding>
+
+
+  <wsdl:service name="ZeniAdminWSDL">
+    <wsdl:port name="ZeniAdminWSDLSOAP" binding="tns:ZeniAdminWSDLSOAP">
+      <soap:address location="http://localhost:8888/jaxzeniadminwsimpl/services/ZeniAdminWSDLSOAP"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.ant.freeform</type>
+    <configuration>
+        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/1">
+            <name>ZeniWS</name>
+        </general-data>
+        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/2">
+            <!-- Do not use Project Properties customizer when editing this file manually. 
+ To prevent the customizer from showing, create nbproject/project.properties file and enter 
+auxiliary.show.customizer=false 
+property there. Adding 
+auxiliary.show.customizer.message=<message>
+ will show your customized message when someone attempts to open the customizer.  -->
+            <name>ZeniWS</name>
+            <properties/>
+            <folders>
+                <source-folder>
+                    <label>Source Packages</label>
+                    <location>.</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>Source Packages</label>
+                    <type>java</type>
+                    <location>.</location>
+                    <encoding>windows-1252</encoding>
+                </source-folder>
+            </folders>
+            <ide-actions>
+                <action name="build">
+                    <script>nbproject/nbjdk.xml</script>
+                    <target>buildAll</target>
+                </action>
+                <action name="clean">
+                    <script>nbproject/nbjdk.xml</script>
+                    <target>cleanClassDir</target>
+                </action>
+                <action name="rebuild">
+                    <script>nbproject/nbjdk.xml</script>
+                    <target>cleanClassDir</target>
+                    <target>buildAll</target>
+                </action>
+                <action name="run.single">
+                    <script>nbproject/ide-file-targets.xml</script>
+                    <target>run-selected-file-in-src</target>
+                    <context>
+                        <property>run.class</property>
+                        <folder>.</folder>
+                        <pattern>\.java$</pattern>
+                        <format>java-name</format>
+                        <arity>
+                            <one-file-only/>
+                        </arity>
+                    </context>
+                </action>
+            </ide-actions>
+            <view>
+                <items>
+                    <source-folder style="packages">
+                        <label>Source Packages</label>
+                        <location>.</location>
+                    </source-folder>
+                    <source-file>
+                        <location>build.xml</location>
+                    </source-file>
+                </items>
+                <context-menu>
+                    <ide-action name="build"/>
+                    <ide-action name="rebuild"/>
+                    <ide-action name="clean"/>
+                    <action>
+                        <label>Deploy</label>
+                        <target>buildWarProduccion</target>
+                    </action>
+                </context-menu>
+            </view>
+            <subprojects/>
+        </general-data>
+        <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/4">
+            <compilation-unit>
+                <package-root>.</package-root>
+                <classpath mode="compile">../lib/Encriptor.jar;../lib/JTattoo.jar;../lib/ZeniWSLib.jar;../lib/activation-1.1.jar;../lib/annotations-api.jar;../lib/aopalliance-1.0.jar;../lib/asm-3.3.1.jar;../lib/catalina-ant.jar;../lib/catalina-ha.jar;../lib/catalina-tribes.jar;../lib/catalina.jar;../lib/cglib-nodep-2.2.2.jar;../lib/classes12.jar;../lib/commons-codec-1.10.jar;../lib/commons-codec-1.2.jar;../lib/commons-codec-1.6.jar;../lib/commons-discovery-0.2.jar;../lib/commons-httpclient-3.1.jar;../lib/commons-lang-2.6.jar;../lib/commons-logging-1.0.4.jar;../lib/commons-logging-1.1.1.jar;../lib/cxf-api-2.6.1.jar;../lib/cxf-manifest.jar;../lib/cxf-rt-bindings-object-2.6.1.jar;../lib/cxf-rt-bindings-soap-2.6.1.jar;../lib/cxf-rt-bindings-xml-2.6.1.jar;../lib/cxf-rt-core-2.6.1.jar;../lib/cxf-rt-databinding-jaxb-2.6.1.jar;../lib/cxf-rt-databinding-xmlbeans-2.6.1.jar;../lib/cxf-rt-features-clustering-2.6.1.jar;../lib/cxf-rt-frontend-jaxrs-2.6.1.jar;../lib/cxf-rt-frontend-jaxws-2.6.1.jar;../lib/cxf-rt-frontend-simple-2.6.1.jar;../lib/cxf-rt-transports-http-2.6.1.jar;../lib/cxf-rt-transports-local-2.6.1.jar;../lib/cxf-rt-ws-addr-2.6.1.jar;../lib/cxf-rt-ws-policy-2.6.1.jar;../lib/cxf-xjc-runtime-2.6.0.jar;../lib/dom4j-1.6.1.jar;../lib/ecj-3.7.2.jar;../lib/el-api.jar;../lib/geronimo-annotation_1.1_spec-1.0.1.jar;../lib/geronimo-javamail_1.4_spec-1.7.1.jar;../lib/httpclient-4.2.6.jar;../lib/httpcore-4.2.4.jar;../lib/jackson-annotations-2.1.5.jar;../lib/jackson-core-2.1.5.jar;../lib/jackson-core-asl-1.9.13.jar;../lib/jackson-databind-2.1.5.jar;../lib/jackson-jaxrs-1.9.13.jar;../lib/jackson-mapper-asl-1.9.13.jar;../lib/jackson-xc-1.9.13.jar;../lib/jasper-el.jar;../lib/jasper.jar;../lib/jaxb-api-2.1.jar;../lib/jaxb-api-2.2.2.jar;../lib/jaxb-impl-2.1.13.jar;../lib/jsp-api.jar;../lib/jsr311-api-1.1.1.jar;../lib/log4j-1.2.16.jar;../lib/mail-1.4.4.jar;../lib/mysql-connector-java-5.1.18-bin.jar;../lib/neethi-3.0.2.jar;../lib/ojdbc5.jar;../lib/ojdbc6-11.2.0.4.0.jar;../lib/ojdbc6.jar;../lib/serializer-2.7.1.jar;../lib/servlet-api.jar;../lib/spring-aop-3.0.7.RELEASE.jar;../lib/spring-aop-3.2.13.RELEASE.jar;../lib/spring-asm-3.0.7.RELEASE.jar;../lib/spring-asm-3.0.7.RELEASE.jar.bak;../lib/spring-aspects-3.0.7.RELEASE.jar;../lib/spring-beans-3.0.7.RELEASE.jar;../lib/spring-beans-3.2.13.RELEASE.jar;../lib/spring-context-3.0.7.RELEASE.jar;../lib/spring-context-3.2.13.RELEASE.jar;../lib/spring-context-support-3.0.7.RELEASE.jar;../lib/spring-core-3.0.7.RELEASE.jar;../lib/spring-core-3.2.13.RELEASE.jar;../lib/spring-expression-3.0.7.RELEASE.jar;../lib/spring-expression-3.2.13.RELEASE.jar;../lib/spring-jdbc-3.0.7.RELEASE.jar;../lib/spring-orm-3.0.7.RELEASE.jar;../lib/spring-test-3.0.7.RELEASE.jar;../lib/spring-tx-3.0.7.RELEASE.jar;../lib/spring-web-3.0.7.RELEASE.jar;../lib/spring-web-3.2.13.RELEASE.jar;../lib/spring-webmvc-3.0.7.RELEASE.jar;../lib/stax-api-1.0-2.jar;../lib/stax2-api-3.1.1.jar;../lib/streambuffer.jar;../lib/tomcat-api.jar;../lib/tomcat-coyote.jar;../lib/tomcat-dbcp.jar;../lib/tomcat-i18n-es.jar;../lib/tomcat-i18n-fr.jar;../lib/tomcat-i18n-ja.jar;../lib/tomcat-jdbc.jar;../lib/tomcat-util.jar;../lib/woodstox-core-asl-4.1.2.jar;../lib/wsdl4j-1.6.2.jar;../lib/wss4j-1.6.6.jar;../lib/xml-resolver-1.2.jar;../lib/xmlschema-core-2.0.2.jar;../lib/xsdlib-2010.1.jar</classpath>
+                <source-level>1.6</source-level>
+            </compilation-unit>
+        </java-data>
+    </configuration>
+</project>

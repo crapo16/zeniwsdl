@@ -1,0 +1,88 @@
+
+package ar.com.zeni.zeniwsdl;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for anonymous complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType>
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="auth" type="{http://www.zeni.com.ar/ZeniWSDL/}AuthType"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+    "auth",
+    "cuenta",
+    "fechas"
+})
+@XmlRootElement(name = "descargaExportacionACamaradeBuenosAires")
+public class DescargaExportacionACamaradeBuenosAires {
+
+    @XmlElement(required = true)
+    protected AuthType auth;
+    
+    @XmlElement(required = true)
+    protected CuentaType cuenta;
+    
+    public CuentaType getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(CuentaType cuenta) {
+		this.cuenta = cuenta;
+	}
+
+	@XmlElement(required = true)
+    protected RangoFechaType fechas;
+
+    public RangoFechaType getFechas() {
+		return fechas;
+	}
+
+	public void setFechas(RangoFechaType fechas) {
+		this.fechas = fechas;
+	}
+
+	/**
+     * Gets the value of the auth property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AuthType }
+     *     
+     */
+    public AuthType getAuth() {
+        return auth;
+    }
+
+    /**
+     * Sets the value of the auth property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AuthType }
+     *     
+     */
+    public void setAuth(AuthType value) {
+        this.auth = value;
+    }
+
+}
