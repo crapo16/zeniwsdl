@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<project name="ZeniWS" basedir="../" default="buildAll">
+    <property name="base_dir" value="./" />
+    <property name="bin_dir" value="${base_dir}/build/classes/" />
+    <property name="src_dir" value="${base_dir}/src/" />
+    <property name="lib_dir" value="${src_dir}/../lib/" />
+    <property name="global_lib_dir" value="${base_dir}/../../lib/" />
+    <property name="war_dir" value="${base_dir}/war/" />
+    <property name="war_dir_zenitest" value="${war_dir}/zeniTest/" />
+    <property name="war_dir_zenidesa" value="${war_dir}/zeniDesa/" />
+    <property name="war_dir_desa" value="${war_dir}/produccion/" />
+    <target name="buildAll" depends="compileClasses, buildWar, createWsLib">
+    </target>
+    <target name="compileClasses" depends="cleanClassDir">
+        <path id="master-classpath">
+            <fileset dir="${src_dir}/../lib/">
+                <include name="*.jar" />
+            </fileset>			
+            <fileset dir="${lib_dir}">
+                <include name="*.jar" />
+            </fileset>
+            <pathelement path="${bin_dir}" />
+        </path>
+        <javac debug="true" optimize="true" srcdir="${src_dir}" destdir="${bin_dir}" includeantruntime="true" verbose="false" source="1.6" target="1.6">
+            <classpath refid="master-classpath"/>
+        </javac>
+        <copy todir="${bin_dir}/ar/com/zeni/admin/app/components/calendar/images">
+            <fileset dir="${src_dir}/ar/com/zeni/admin/app/components/calendar/images"/>
+        </copy>  		
+    </target>
+    <target name="cleanClassDir">
+        <mkdir dir="${bin_dir}"/>
+        <delete>
+            <fileset dir="${bin_dir}">
+            </fileset>
+        </delete>
+        <mkdir dir="${bin_dir}"/>
+    </target>
+    <target name="createWarDir">
+        <mkdir dir="${war_dir}" />
+        <delete>
+            <fileset dir="${war_dir}">
+                <include name="**" />
+            </fileset>
+        </delete>
+        <mkdir dir="${war_dir}"/>
+        <mkdir dir="${war_dir_desa}"/>
+        <mkdir dir="${war_dir_zenitest}"/>
+        <mkdir dir="${war_dir_zenidesa}"/>
+    </target>
+    
+    <!--BUILD PARA TEST-->
+    <target name="buildWarZeniTest" depends="buildWarZeniDESA, createWarDir">
+        <copy file="${src_dir}/APP_PROPERTIES.ZENITEST.PROPERTIES" tofile="${bin_dir}/APP_PROPERTIES.PROPERTIES" overwrite="true" filtering="true" />        
+        <war destfile="${war_dir_zenitest}/jaxzeniwsimpl.war" webxml="WebContent/WEB-INF/web.xml">
+            <fileset dir="WebContent"/>
+            <lib dir="${src_dir}/../lib/"/> 
+            <classes dir="${bin_dir}"/>
+        </war>
+        <war destfile="${war_dir_zenitest}/jaxzeniadminwsimpl.war" webxml="${src_dir}/ar/com/zeni/admin/app/server/WebContent/WEB-INF/web.xml">
+            <fileset dir="${src_dir}/ar/com/zeni/admin/app/server/WebContent"/>
+            <lib dir="${src_dir}/../lib/"/>
+            <classes dir="${bin_dir}"/>
+        </war>
+        <jar jarfile="${war_dir_zenitest}/ZeniWSLib.jar" basedir="${bin_dir}" compress="true">
+            <include name="**/APP_PROPERTIES.PROPERTIES" />
+            <include name="**/ar/com/zeni/codecs/**" />
+            <include name="**/ar/com/zeni/common/*" />
+            <include name="**/ar/com/zeni/common/exceptions/*" />
+            <include name="**/ar/com/zeni/common/tables/*" />
+            <include name="**/ar/com/zeni/db/*" />
+            <include name="**/ar/com/zeni/mail/*" />
+            <include name="**/ar/com/zeni/mail/implementation/*" />
+            <include name="**/ar/com/zeni/security/*" />
+            <include name="**/ar/com/zeni/zeniwsdl/*" />
+        </jar>
+        <jar jarfile="${war_dir_zenitest}/Encriptor.jar" compress="true">
+            <fileset dir="${bin_dir}">
+                <include name="**/ar/com/zeni/codecs/**"/>
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="ar.com.zeni.codecs.Encriptor" />
+            </manifest>
+        </jar>
+        <jar jarfile="${war_dir_zenitest}/AdminZeni.jar" compress="true">
+            <fileset dir="${bin_dir}">
+                <include name="**/ar/com/zeni/test/**"/>
+                <include name="**/ar/com/zeni/admin/app/**"/>
+                <include name="**/ar/com/zeni/admin/app/**"/>
+                <include name="**/ar/com/zeni/admin/app/components/**"/>
+                <include name="**/ar/com/zeni/admin/app/components/calendar/**"/>
+                <include name="**/ar/com/zeni/admin/app/components/calendar/images/**"/>
+                <include name="**/ar/com/zeni/admin/app/server/**"/>
+                <include name="**/ar/com/zeni/zeniadminwsdl/**"/>
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="ar.com.zeni.admin.app.NewsApplication" />
+            </manifest>
+        </jar>
+    </target>
+    
+    <!--BUILD PARA TEST-->
+    <target name="buildWarZeniDESA" depends="createWarDir">
+        <copy file="${src_dir}/APP_PROPERTIES.ZENIDESA.PROPERTIES" tofile="${bin_dir}/APP_PROPERTIES.PROPERTIES" overwrite="true" filtering="true" />
+        <copy file="${src_dir}/WP_PROPERTIES.PROPERTIES" tofile="${bin_dir}/WP_PROPERTIES.PROPERTIES" overwrite="true" filtering="true" />        
+        <war destfile="${war_dir_zenidesa}/jaxzeniwsdesa.war" webxml="WebContent/WEB-INF/web.xml">
+            <fileset dir="WebContent"/>
+            <lib dir="${src_dir}/../lib/"/> 
+            <classes dir="${bin_dir}"/>
+        </war>
+        <war destfile="${war_dir_zenidesa}/jaxzeniadminwsdesa.war" webxml="${src_dir}/ar/com/zeni/admin/app/server/WebContent/WEB-INF/web.xml">
+            <fileset dir="${src_dir}/ar/com/zeni/admin/app/server/WebContent"/>
+            <lib dir="${src_dir}/../lib/"/>
+            <classes dir="${bin_dir}"/>
+        </war>
+        <jar jarfile="${war_dir_zenidesa}/ZeniWSLib.jar" basedir="${bin_dir}" compress="true">
+            <include name="**/APP_PROPERTIES.PROPERTIES" />
+            <include name="**/WP_PROPERTIES.PROPERTIES" />
+            <include name="**/ar/com/zeni/codecs/**" />
+            <include name="**/ar/com/zeni/common/*" />
+            <include name="**/ar/com/zeni/common/exceptions/*" />
+            <include name="**/ar/com/zeni/common/tables/*" />
+            <include name="**/ar/com/zeni/db/*" />
+            <include name="**/ar/com/zeni/mail/*" />
+            <include name="**/ar/com/zeni/mail/implementation/*" />
+            <include name="**/ar/com/zeni/security/*" />
+            <include name="**/ar/com/zeni/zeniwsdl/*" />
+        </jar>
+        <jar jarfile="${war_dir_zenidesa}/Encriptor.jar" compress="true">
+            <fileset dir="${bin_dir}">
+                <include name="**/ar/com/zeni/codecs/**"/>
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="ar.com.zeni.codecs.Encriptor" />
+            </manifest>
+        </jar>
+        <jar jarfile="${war_dir_zenidesa}/AdminZeni.jar" compress="true">
+            <fileset dir="${bin_dir}">
+                <include name="**/ar/com/zeni/test/**"/>
+                <include name="**/ar/com/zeni/admin/app/**"/>
+                <include name="**/ar/com/zeni/admin/app/**"/>
+                <include name="**/ar/com/zeni/admin/app/components/**"/>
+                <include name="**/ar/com/zeni/admin/app/components/calendar/**"/>
+                <include name="**/ar/com/zeni/admin/app/components/calendar/images/**"/>
+                <include name="**/ar/com/zeni/admin/app/server/**"/>
+                <include name="**/ar/com/zeni/zeniadminwsdl/**"/>
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="ar.com.zeni.admin.app.NewsApplication" />
+            </manifest>
+        </jar>
+    </target>
+    
+    <!--BUILD PARA PRODUCCION-->
+    <target name="buildWarProduccion" depends="createWarDir">
+        <copy file="${src_dir}/APP_PROPERTIES.DESARROLLO.PROPERTIES" tofile="${bin_dir}/APP_PROPERTIES.PROPERTIES" overwrite="true" filtering="true" />
+        <war destfile="${war_dir_desa}/jaxzeniwsimpl.war" webxml="WebContent/WEB-INF/web.xml">
+            <fileset dir="WebContent"/>
+            <lib dir="${src_dir}/../lib/zeniwsLibs"/> 
+            <classes dir="${bin_dir}"/>
+        </war>
+        <war destfile="${war_dir_desa}/jaxzeniadminwsimpl.war" webxml="${src_dir}/ar/com/zeni/admin/app/server/WebContent/WEB-INF/web.xml">
+            <fileset dir="${src_dir}/ar/com/zeni/admin/app/server/WebContent"/>
+            <lib dir="${src_dir}/../lib/zeniwsLibs"/>
+            <classes dir="${bin_dir}"/>
+        </war>
+        <jar jarfile="${war_dir_desa}/ZeniWSLib.jar" basedir="${bin_dir}" compress="true">
+            <include name="**/APP_PROPERTIES.PROPERTIES" />
+            <include name="**/ar/com/zeni/codecs/**" />
+            <include name="**/ar/com/zeni/common/*" />
+            <include name="**/ar/com/zeni/common/exceptions/*" />
+            <include name="**/ar/com/zeni/common/tables/*" />
+            <include name="**/ar/com/zeni/db/*" />
+            <include name="**/ar/com/zeni/mail/*" />
+            <include name="**/ar/com/zeni/mail/implementation/*" />
+            <include name="**/ar/com/zeni/security/*" />
+            <include name="**/ar/com/zeni/zeniwsdl/*" />
+        </jar>
+        <jar jarfile="${war_dir_desa}/Encriptor.jar" compress="true">
+            <fileset dir="${bin_dir}">
+                <include name="**/ar/com/zeni/codecs/**"/>
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="ar.com.zeni.codecs.Encriptor" />
+            </manifest>
+        </jar>
+        <jar jarfile="${war_dir_desa}/AdminZeni.jar" compress="true">
+            <fileset dir="${bin_dir}">
+                <include name="**/ar/com/zeni/test/**"/>
+                <include name="**/ar/com/zeni/admin/app/**"/>
+                <include name="**/ar/com/zeni/admin/app/**"/>
+                <include name="**/ar/com/zeni/admin/app/components/**"/>
+                <include name="**/ar/com/zeni/admin/app/components/calendar/**"/>
+                <include name="**/ar/com/zeni/admin/app/components/calendar/images/**"/>
+                <include name="**/ar/com/zeni/admin/app/server/**"/>
+                <include name="**/ar/com/zeni/zeniadminwsdl/**"/>
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="ar.com.zeni.admin.app.NewsApplication" />
+            </manifest>
+        </jar>
+    </target>
+    <target name="buildWar" depends="buildWarProduccion">
+    </target>
+    <target name="createWsLib" depends="createWsLibDesa, createWsLibZeniDesa, createWsLibZeniTest">
+    </target>
+    <target name="createWsLibDesa" depends="createWarDir">
+    </target>
+    <target name="createWsLibZeniDesa" depends="createWarDir">
+    </target>
+    <target name="createWsLibZeniTest" depends="createWarDir">
+    </target>
+</project>
