@@ -950,7 +950,7 @@ public abstract class ServiceImplMenuInformacion extends
             if (condicion.equals(EnumCompradorVendedorType.COMPRADOR)
                     || condicion.equals(EnumCompradorVendedorType.AMBOS)) {
                 querySBuilder
-                        .append("select c.id contrato_id, e.fechadescargamercaderia fecha,c.numerocontrato,e.nrocartadeporte, ")
+                        .append("select c.id contrato_id, e.fechadescargamercaderia fecha,c.numerocontrato,e.nrocartadeporte,e.ctg, ")
                         .append("round(ep.cantidad,3) cantidad, ")
                         .append("p.descripcion,cparte.razonsocial contraparte,proc.nombre procedencia, ")
                         .append("dest.nombre ")
@@ -980,7 +980,7 @@ public abstract class ServiceImplMenuInformacion extends
             if (condicion.equals(EnumCompradorVendedorType.VENDEDOR)
                     || condicion.equals(EnumCompradorVendedorType.AMBOS)) {
                 querySBuilder
-                        .append("select c.id contrato_id,e.fechadescargamercaderia fecha,c.numerocontrato,e.nrocartadeporte, ")
+                        .append("select c.id contrato_id,e.fechadescargamercaderia fecha,c.numerocontrato,e.nrocartadeporte,e.ctg, ")
                         .append("round(ep.cantidad,3) cantidad, ")
                         .append("p.descripcion,cparte.razonsocial contraparte,proc.nombre procedencia, ")
                         .append("dest.nombre ")
@@ -1032,6 +1032,8 @@ public abstract class ServiceImplMenuInformacion extends
                                     .getString("nombre"));
                             _returnEntregasVal1.setNroCPorte(rset
                                     .getString("nrocartadeporte"));
+                            _returnEntregasVal1.setCtg(rset
+                                    .getString("ctg"));
                             // _returnEntregasVal1.setTipoCompradorVendedor(rset.getString("tipoComp").equals("comprador")?EnumCompradorVendedorType.COMPRADOR:EnumCompradorVendedorType.VENDEDOR);
                             _returnEntregas.add(_returnEntregasVal1);
                         } catch (ParseException e) {
@@ -1166,6 +1168,7 @@ public abstract class ServiceImplMenuInformacion extends
                 String MuestraId;
                 float Kilos;
                 String CPorte;
+                String Ctg;
                 String NroCertificado;
                 FechaTimeType FechaCertificado;
             }
@@ -1226,7 +1229,7 @@ public abstract class ServiceImplMenuInformacion extends
                 final String contratid = a.ContratoId;
                 final StringBuilder querySBuilderMuest = new StringBuilder()
                         .append("select am.id,am.nrocertificadoanalisis certificado, to_char(am.fechaanalisis, 'dd-MM-yyyy') fecha,ep.cantidad kilos, ")
-                        .append("e.nrocartadeporte, ")
+                        .append("e.nrocartadeporte,e.ctg, ")
                         .append("100+(sum(decode(rc.modificafactor,1,dam.porcentajebonificacionrebaja,0))/100) factor ")
                         .append("from ")
                         .append(owner)
@@ -1249,7 +1252,7 @@ public abstract class ServiceImplMenuInformacion extends
                         .append("where ep.fechabaja is null ")
                         .append("and ep.contrato_id = ")
                         .append(contratid)
-                        .append(" group by am.id,am.nrocertificadoanalisis,to_char(am.fechaanalisis, 'dd-MM-yyyy'),ep.cantidad,e.nrocartadeporte ");
+                        .append(" group by am.id,am.nrocertificadoanalisis,to_char(am.fechaanalisis, 'dd-MM-yyyy'),ep.cantidad,e.nrocartadeporte,e.ctg ");
                 final ResulsetObjectBuilder resbMues = new ResulsetObjectBuilder() {
                     @Override
                     public void thisIsTheResulset(final ResultSet rsetMuse)
@@ -1261,6 +1264,8 @@ public abstract class ServiceImplMenuInformacion extends
                                 er.Kilos = rsetMuse.getFloat("kilos");
                                 er.CPorte = rsetMuse
                                         .getString("nrocartadeporte");
+                                er.Ctg = rsetMuse
+                                        .getString("ctg");
                                 er.NroCertificado = rsetMuse
                                         .getString("certificado");
                                 er.FechaCertificado = DateUtil.Converters
@@ -1308,6 +1313,7 @@ public abstract class ServiceImplMenuInformacion extends
                                     erasmo.setMuestraId(b.MuestraId);
                                     erasmo.setKilos(b.Kilos);
                                     erasmo.setCPorte(b.CPorte);
+                                    erasmo.setCtg(b.Ctg);
                                     erasmo.setNroCertificado(b.NroCertificado);
                                     erasmo.setFechaCertificado(b.FechaCertificado);
                                     erasmo.setAnalisis(rsetAna

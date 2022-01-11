@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="muestraId" type="{http://www.zeni.com.ar/ZeniWSDL/}IdType"/>
  *         &lt;element name="kilos" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         &lt;element name="cPorte" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="ctg" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="nroCertificado" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="fechaCertificado" type="{http://www.zeni.com.ar/ZeniWSDL/}FechaTimeType"/>
  *         &lt;element name="factor" type="{http://www.w3.org/2001/XMLSchema}float"/>
@@ -44,6 +45,7 @@ import javax.xml.bind.annotation.XmlType;
     "muestraId",
     "kilos",
     "cPorte",
+    "ctg",
     "nroCertificado",
     "fechaCertificado",
     "factor",
@@ -63,6 +65,8 @@ public class MuestraType {
     protected float kilos;
     @XmlElement(required = true)
     protected String cPorte;
+    @XmlElement(required = true)
+    protected String ctg;
     @XmlElement(required = true)
     protected String nroCertificado;
     @XmlElement(required = true)
@@ -349,5 +353,23 @@ public class MuestraType {
     public void setResult(float value) {
         this.result = value;
     }
+
+    public String getcPorte() {
+        return cPorte;
+    }
+
+    public void setcPorte(String cPorte) {
+        this.cPorte = cPorte;
+    }
+
+    public String getCtg() {
+        return ctg;
+    }
+
+    public void setCtg(String ctg) {
+        this.ctg = ctg;
+    }
+    
+    
 
 }

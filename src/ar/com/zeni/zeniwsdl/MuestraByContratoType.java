@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="nrocertif" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="analisisId" type="{http://www.zeni.com.ar/ZeniWSDL/}IdType"/>
  *         &lt;element name="cporte" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="ctg" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="factor" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="sinnombre" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
@@ -47,6 +48,7 @@ import javax.xml.bind.annotation.XmlType;
     "nrocertif",
     "analisisId",
     "cporte",
+    "ctg",
     "factor",
     "sinnombre"
 })
@@ -67,6 +69,8 @@ public class MuestraByContratoType {
     protected String analisisId;
     @XmlElement(required = true)
     protected String cporte;
+    @XmlElement(required = true)
+    protected String ctg;
     @XmlElement(required = true)
     protected String factor;
     @XmlElement(required = true)
@@ -303,5 +307,15 @@ public class MuestraByContratoType {
     public void setSinnombre(String value) {
         this.sinnombre = value;
     }
+
+    public String getCtg() {
+        return ctg;
+    }
+
+    public void setCtg(String ctg) {
+        this.ctg = ctg;
+    }
+    
+    
 
 }

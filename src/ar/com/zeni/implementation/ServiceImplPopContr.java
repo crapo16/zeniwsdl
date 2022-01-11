@@ -411,7 +411,7 @@ public abstract class ServiceImplPopContr extends ServiceImplMenuMisOperaciones 
             ArrayOfMuestraByContratoType _return = new ArrayOfMuestraByContratoType();
             final List<MuestraByContratoType> _returnMuestrasByContrato = new ArrayList<MuestraByContratoType>();
             final StringBuilder querySBuilder = new StringBuilder().append(
-                    "select a.id analisis_id, a.nrosolicitudanalisis nrocertif,a.nrocertificadoanalisis nro,e.nrocartadeporte cporte, e.fechadescargamercaderia fechaentr, ep.cantidad kilos, null fechacarta, a.nrosolicitudanalisis nrosolic, null compr, null analisis, null sinnombre, null nromuestra, null factor from ")
+                    "select a.id analisis_id, a.nrosolicitudanalisis nrocertif,a.nrocertificadoanalisis nro,e.nrocartadeporte cporte,e.ctg, e.fechadescargamercaderia fechaentr, ep.cantidad kilos, null fechacarta, a.nrosolicitudanalisis nrosolic, null compr, null analisis, null sinnombre, null nromuestra, null factor from ")
                     .append(owner).append("analisis_muestra a inner join ").append(owner)
                     .append("entrega e on (e.analisismuestra_id=a.id and e.fechabaja is null) inner join ")
                     .append(owner)
@@ -425,6 +425,7 @@ public abstract class ServiceImplPopContr extends ServiceImplMenuMisOperaciones 
                             MuestraByContratoType _returnMuestrasByContratoVal1 = new MuestraByContratoType();
                             _returnMuestrasByContratoVal1.setAnalisisId(rset.getString("analisis_id"));
                             _returnMuestrasByContratoVal1.setCporte(rset.getString("cporte"));
+                            _returnMuestrasByContratoVal1.setCtg(rset.getString("ctg"));
                             _returnMuestrasByContratoVal1.setFactor(rset.getString("factor"));
                             _returnMuestrasByContratoVal1.setFeccarta(DateUtil.Converters
                                     .DateToFechaTimeType(DateUtil.Parsers.yyyyMMdd(rset.getString("fechacarta"))));
