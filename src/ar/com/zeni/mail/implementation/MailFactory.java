@@ -12,7 +12,7 @@ import ar.com.zeni.common.tables.MailTable;
 import ar.com.zeni.mail.Mail;
 
 public class MailFactory {
-	private Connection con;
+	private final Connection con;
 	
 	public MailFactory(Connection connection){
 		con = connection;

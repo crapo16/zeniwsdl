@@ -121,7 +121,7 @@ public class ServerMailDispatcher {
 		mail.setReplyTo(new Address[] { from });
 		InternetAddress[] to = new InternetAddress[mail2send.getTo().size()];
 		for (int i = 0; i < mail2send.getTo().size(); i++) {
-			to[i] = new InternetAddress(mail2send.getTo().get(i).toString());
+			to[i] = new InternetAddress(mail2send.getTo().get(i));
 		}
 		mail.setRecipients(Message.RecipientType.TO, to);
 		mail.setSubject(mail2send.getSubject());

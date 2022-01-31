@@ -27,491 +27,495 @@ import ar.com.zeni.common.ZeniContextServer;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public class ConnectionImplementation implements ConnectionProperties {
-	static DataSource				_ds	= null;
-	private static ConnectionPool	pool;
-	private String					port;
-	private String					host;
-	private String					pass;
-	private String					user;
-	private String					driver;
-	private String					db;
-	private String					jndi_connection_name;
-	private String					jndi_context;
-	private String					jdb_prefix;
-	private String					separator;
 
-	/**
-	 * Constructor
-	 */
-	public ConnectionImplementation() {
-		readProperties();
-	}
+    static DataSource _ds = null;
+    private static ConnectionPool pool;
+    private String port;
+    private String host;
+    private String pass;
+    private String user;
+    private String driver;
+    private String db;
+    private String jndi_connection_name;
+    private String jndi_context;
+    private String jdb_prefix;
+    private String separator;
 
-	private void readProperties() {
-		jndi_context = ZeniContextServer.getInstance().getProperty(JNDI_CONTEXT);
-		jndi_connection_name = ZeniContextServer.getInstance().getProperty(JNDI_CONNECTION_NAME);
-		jdb_prefix = ZeniContextServer.getInstance().getProperty(DB_JDBC_PREFIX);
-		separator = ZeniContextServer.getInstance().getProperty(DB_SEPARATOR);
-		db = ZeniContextServer.getInstance().getProperty(DB_NAME);
-		driver = ZeniContextServer.getInstance().getProperty(DB_DRIVER);
-		user = ZeniContextServer.getInstance().getProperty(DB_USER);
-		pass = ZeniContextServer.getInstance().getProperty(DB_PASS);
-		host = ZeniContextServer.getInstance().getProperty(DB_HOST);
-		port = ZeniContextServer.getInstance().getProperty(DB_PORT);
-	}
+    /**
+     * Constructor
+     */
+    public ConnectionImplementation() {
+        readProperties();
+    }
 
-	/**
-	 * db conn
-	 *
-	 * @return Connection
-	 */
-	public Connection getConnection() throws SQLException {
-		Connection conn = null;
-		try {
-			if (_ds == null) {
-				Context initContext = new InitialContext();
-				Context envContext = (Context) initContext.lookup(jndi_context);
-				_ds = (DataSource) envContext.lookup(jndi_connection_name);
-			}
-			conn = _ds.getConnection();
-		} catch (Exception ex) {
-			if (pool == null) {
-				String msg = "<!-- MYSQL DS " + "\n" + "<Resource name=\"" + jndi_connection_name + "\" auth=\"Container\" type=\"javax.sql.DataSource\"" + "\n" + "maxActive=\"50\" maxIdle=\"5\" maxWait=\"10000\"" + "\n" + "username=\"root\" password=\"pass\" driverClassName=\"com.mysql.jdbc.Driver\"" + "\n" + "url=\"jdbc:mysql://sdb03.aperturasoftware.local:3306/quonweb?relaxAutoCommit=true\"/>" + "\n" + "-->" + "\n" + "<!-- ORACLE DS" + "\n" + "<Resource name=\"" + jndi_connection_name + "\" auth=\"Container\" type=\"javax.sql.DataSource\"" + "\n" + "maxActive=\"50\" maxIdle=\"5\" maxWait=\"10000\"" + "\n" + "username=\"root\" password=\"pass\" driverClassName=\"oracle.jdbc.pool.OracleDataSource\"" + "\n" + "url=\"jdbc:oracle:thin:@sdb03.aperturasoftware.local:1521:quonweb\"/>" + "\n" + "-->";
-				ZeniContextServer.getInstance().printErrorLog("No se encuentra DS en tomcat server, ingrese en el context.xml del tomcat \n" + msg);
-				ZeniContextServer.getInstance().printErrorLog(ex);
-				ZeniContextServer.getInstance().printErrorLog("Comenzando la creacion del pool local.");
-				String url = jdb_prefix + host + ":" + port + separator + db;
-				ZeniContextServer.getInstance().printErrorLog("Conexion URL: " + url);
-				try {
-					pool = new ConnectionPool(url, user, pass, driver, host, port, db);
-				} catch (SQLException e1) {
-					ZeniContextServer.getInstance().printErrorLog("No se puede establecer el pool a la base de datos.");
-					throw e1;
-				}
-			}
-			try {
-				conn = pool.checkout();
-			} catch (SQLException e2) {
-				ZeniContextServer.getInstance().printErrorLog("No se puede obtener una conexion a la base de datos desde el pool.");
-				throw e2;
-			}
-		}
-		if (conn == null) {
-			ZeniContextServer.getInstance().printErrorLog("No se puede establecer una conexion a la base de datos.");
-			throw new SQLException("No se puede establecer una conexion a la base de datos.");
-		}
-		return conn;
-	}
+    private void readProperties() {
+        jndi_context = ZeniContextServer.getInstance().getProperty(JNDI_CONTEXT);
+        jndi_connection_name = ZeniContextServer.getInstance().getProperty(JNDI_CONNECTION_NAME);
+        jdb_prefix = ZeniContextServer.getInstance().getProperty(DB_JDBC_PREFIX);
+        separator = ZeniContextServer.getInstance().getProperty(DB_SEPARATOR);
+        db = ZeniContextServer.getInstance().getProperty(DB_NAME);
+        driver = ZeniContextServer.getInstance().getProperty(DB_DRIVER);
+        user = ZeniContextServer.getInstance().getProperty(DB_USER);
+        pass = ZeniContextServer.getInstance().getProperty(DB_PASS);
+        host = ZeniContextServer.getInstance().getProperty(DB_HOST);
+        port = ZeniContextServer.getInstance().getProperty(DB_PORT);
+    }
+
+    /**
+     * db conn
+     *
+     * @return Connection
+     */
+    public Connection getConnection() throws SQLException {
+        Connection conn = null;
+        try {
+            if (_ds == null) {
+                Context initContext = new InitialContext();
+                Context envContext = (Context) initContext.lookup(jndi_context);
+                _ds = (DataSource) envContext.lookup(jndi_connection_name);
+            }
+            conn = _ds.getConnection();
+        } catch (Exception ex) {
+            if (pool == null) {
+                String msg = "<!-- MYSQL DS " + "\n" + "<Resource name=\"" + jndi_connection_name + "\" auth=\"Container\" type=\"javax.sql.DataSource\"" + "\n" + "maxActive=\"50\" maxIdle=\"5\" maxWait=\"10000\"" + "\n" + "username=\"root\" password=\"pass\" driverClassName=\"com.mysql.jdbc.Driver\"" + "\n" + "url=\"jdbc:mysql://sdb03.aperturasoftware.local:3306/quonweb?relaxAutoCommit=true\"/>" + "\n" + "-->" + "\n" + "<!-- ORACLE DS" + "\n" + "<Resource name=\"" + jndi_connection_name + "\" auth=\"Container\" type=\"javax.sql.DataSource\"" + "\n" + "maxActive=\"50\" maxIdle=\"5\" maxWait=\"10000\"" + "\n" + "username=\"root\" password=\"pass\" driverClassName=\"oracle.jdbc.pool.OracleDataSource\"" + "\n" + "url=\"jdbc:oracle:thin:@sdb03.aperturasoftware.local:1521:quonweb\"/>" + "\n" + "-->";
+                ZeniContextServer.getInstance().printErrorLog("No se encuentra DS en tomcat server, ingrese en el context.xml del tomcat \n" + msg);
+                ZeniContextServer.getInstance().printErrorLog(ex);
+                ZeniContextServer.getInstance().printErrorLog("Comenzando la creacion del pool local.");
+                String url = jdb_prefix + host + ":" + port + separator + db;
+                ZeniContextServer.getInstance().printErrorLog("Conexion URL: " + url);
+                try {
+                    pool = new ConnectionPool(url, user, pass, driver, host, port, db);
+                } catch (SQLException e1) {
+                    ZeniContextServer.getInstance().printErrorLog("No se puede establecer el pool a la base de datos.");
+                    throw e1;
+                }
+            }
+            try {
+                conn = pool.checkout();
+            } catch (SQLException e2) {
+                ZeniContextServer.getInstance().printErrorLog("No se puede obtener una conexion a la base de datos desde el pool.");
+                throw e2;
+            }
+        }
+        if (conn == null) {
+            ZeniContextServer.getInstance().printErrorLog("No se puede establecer una conexion a la base de datos.");
+            throw new SQLException("No se puede establecer una conexion a la base de datos.");
+        }
+        return conn;
+    }
 }
 
 class ZeniPooledConnection implements Connection {
-	Connection				c;
-	private boolean			isFree	= true;
-	private ConnectionPool	pool;
 
-	public ZeniPooledConnection(Connection c, ConnectionPool connectionPool) {
-		this.c = c;
-		this.pool = connectionPool;
-	}
+    Connection c;
+    private boolean isFree = true;
+    private final ConnectionPool pool;
 
-	private void returnToPool() {
-		this.pool.checkin(this);
-		setFree(true);
-	}
+    public ZeniPooledConnection(Connection c, ConnectionPool connectionPool) {
+        this.c = c;
+        this.pool = connectionPool;
+    }
 
-	public void setFree(boolean b) {
-		isFree = b;
-	}
+    private void returnToPool() {
+        this.pool.checkin(this);
+        setFree(true);
+    }
 
-	public boolean isFree() {
-		return isFree;
-	}
+    public void setFree(boolean b) {
+        isFree = b;
+    }
 
-	public void close() throws SQLException {
-		returnToPool();
-	}
+    public boolean isFree() {
+        return isFree;
+    }
 
-	public void clearWarnings() throws SQLException {
-		c.clearWarnings();
-	}
+    public void close() throws SQLException {
+        returnToPool();
+    }
 
-	public void commit() throws SQLException {
-		c.commit();
-	}
+    public void clearWarnings() throws SQLException {
+        c.clearWarnings();
+    }
 
-	public Array createArrayOf(String arg0, Object[] arg1) throws SQLException {
-		return c.createArrayOf(arg0, arg1);
-	}
+    public void commit() throws SQLException {
+        c.commit();
+    }
 
-	public Blob createBlob() throws SQLException {
-		return c.createBlob();
-	}
+    public Array createArrayOf(String arg0, Object[] arg1) throws SQLException {
+        return c.createArrayOf(arg0, arg1);
+    }
 
-	public Clob createClob() throws SQLException {
-		return c.createClob();
-	}
+    public Blob createBlob() throws SQLException {
+        return c.createBlob();
+    }
 
-	public NClob createNClob() throws SQLException {
-		return c.createNClob();
-	}
+    public Clob createClob() throws SQLException {
+        return c.createClob();
+    }
 
-	public SQLXML createSQLXML() throws SQLException {
-		return c.createSQLXML();
-	}
+    public NClob createNClob() throws SQLException {
+        return c.createNClob();
+    }
 
-	public Statement createStatement() throws SQLException {
-		return c.createStatement();
-	}
+    public SQLXML createSQLXML() throws SQLException {
+        return c.createSQLXML();
+    }
 
-	public Statement createStatement(int arg0, int arg1, int arg2) throws SQLException {
-		return c.createStatement(arg0, arg1, arg2);
-	}
+    public Statement createStatement() throws SQLException {
+        return c.createStatement();
+    }
 
-	public Statement createStatement(int arg0, int arg1) throws SQLException {
-		return c.createStatement(arg0, arg1);
-	}
+    public Statement createStatement(int arg0, int arg1, int arg2) throws SQLException {
+        return c.createStatement(arg0, arg1, arg2);
+    }
 
-	public Struct createStruct(String arg0, Object[] arg1) throws SQLException {
-		return c.createStruct(arg0, arg1);
-	}
+    public Statement createStatement(int arg0, int arg1) throws SQLException {
+        return c.createStatement(arg0, arg1);
+    }
 
-	public boolean getAutoCommit() throws SQLException {
-		return c.getAutoCommit();
-	}
+    public Struct createStruct(String arg0, Object[] arg1) throws SQLException {
+        return c.createStruct(arg0, arg1);
+    }
 
-	public String getCatalog() throws SQLException {
-		return c.getCatalog();
-	}
+    public boolean getAutoCommit() throws SQLException {
+        return c.getAutoCommit();
+    }
 
-	public Properties getClientInfo() throws SQLException {
-		return c.getClientInfo();
-	}
+    public String getCatalog() throws SQLException {
+        return c.getCatalog();
+    }
 
-	public String getClientInfo(String arg0) throws SQLException {
-		return c.getClientInfo(arg0);
-	}
+    public Properties getClientInfo() throws SQLException {
+        return c.getClientInfo();
+    }
 
-	public int getHoldability() throws SQLException {
-		return c.getHoldability();
-	}
+    public String getClientInfo(String arg0) throws SQLException {
+        return c.getClientInfo(arg0);
+    }
 
-	public DatabaseMetaData getMetaData() throws SQLException {
-		return c.getMetaData();
-	}
+    public int getHoldability() throws SQLException {
+        return c.getHoldability();
+    }
 
-	public int getTransactionIsolation() throws SQLException {
-		return c.getTransactionIsolation();
-	}
+    public DatabaseMetaData getMetaData() throws SQLException {
+        return c.getMetaData();
+    }
 
-	public Map<String, Class<?>> getTypeMap() throws SQLException {
-		return c.getTypeMap();
-	}
+    public int getTransactionIsolation() throws SQLException {
+        return c.getTransactionIsolation();
+    }
 
-	public SQLWarning getWarnings() throws SQLException {
-		return c.getWarnings();
-	}
+    public Map<String, Class<?>> getTypeMap() throws SQLException {
+        return c.getTypeMap();
+    }
 
-	public boolean isClosed() throws SQLException {
-		return c.isClosed();
-	}
+    public SQLWarning getWarnings() throws SQLException {
+        return c.getWarnings();
+    }
 
-	public boolean isReadOnly() throws SQLException {
-		return c.isReadOnly();
-	}
+    public boolean isClosed() throws SQLException {
+        return c.isClosed();
+    }
 
-	public boolean isValid(int arg0) throws SQLException {
-		return c.isValid(arg0);
-	}
+    public boolean isReadOnly() throws SQLException {
+        return c.isReadOnly();
+    }
 
-	public boolean isWrapperFor(Class<?> arg0) throws SQLException {
-		return c.isWrapperFor(arg0);
-	}
+    public boolean isValid(int arg0) throws SQLException {
+        return c.isValid(arg0);
+    }
 
-	public String nativeSQL(String arg0) throws SQLException {
-		return c.nativeSQL(arg0);
-	}
+    public boolean isWrapperFor(Class<?> arg0) throws SQLException {
+        return c.isWrapperFor(arg0);
+    }
 
-	public CallableStatement prepareCall(String arg0, int arg1, int arg2, int arg3) throws SQLException {
-		return c.prepareCall(arg0, arg1, arg2, arg3);
-	}
+    public String nativeSQL(String arg0) throws SQLException {
+        return c.nativeSQL(arg0);
+    }
 
-	public CallableStatement prepareCall(String arg0, int arg1, int arg2) throws SQLException {
-		return c.prepareCall(arg0, arg1, arg2);
-	}
+    public CallableStatement prepareCall(String arg0, int arg1, int arg2, int arg3) throws SQLException {
+        return c.prepareCall(arg0, arg1, arg2, arg3);
+    }
 
-	public CallableStatement prepareCall(String arg0) throws SQLException {
-		return c.prepareCall(arg0);
-	}
+    public CallableStatement prepareCall(String arg0, int arg1, int arg2) throws SQLException {
+        return c.prepareCall(arg0, arg1, arg2);
+    }
 
-	public PreparedStatement prepareStatement(String arg0, int arg1, int arg2, int arg3) throws SQLException {
-		return c.prepareStatement(arg0, arg1, arg2, arg3);
-	}
+    public CallableStatement prepareCall(String arg0) throws SQLException {
+        return c.prepareCall(arg0);
+    }
 
-	public PreparedStatement prepareStatement(String arg0, int arg1, int arg2) throws SQLException {
-		return c.prepareStatement(arg0, arg1, arg2);
-	}
+    public PreparedStatement prepareStatement(String arg0, int arg1, int arg2, int arg3) throws SQLException {
+        return c.prepareStatement(arg0, arg1, arg2, arg3);
+    }
 
-	public PreparedStatement prepareStatement(String arg0, int arg1) throws SQLException {
-		return c.prepareStatement(arg0, arg1);
-	}
+    public PreparedStatement prepareStatement(String arg0, int arg1, int arg2) throws SQLException {
+        return c.prepareStatement(arg0, arg1, arg2);
+    }
 
-	public PreparedStatement prepareStatement(String arg0, int[] arg1) throws SQLException {
-		return c.prepareStatement(arg0, arg1);
-	}
+    public PreparedStatement prepareStatement(String arg0, int arg1) throws SQLException {
+        return c.prepareStatement(arg0, arg1);
+    }
 
-	public PreparedStatement prepareStatement(String arg0, String[] arg1) throws SQLException {
-		return c.prepareStatement(arg0, arg1);
-	}
+    public PreparedStatement prepareStatement(String arg0, int[] arg1) throws SQLException {
+        return c.prepareStatement(arg0, arg1);
+    }
 
-	public PreparedStatement prepareStatement(String arg0) throws SQLException {
-		return c.prepareStatement(arg0);
-	}
+    public PreparedStatement prepareStatement(String arg0, String[] arg1) throws SQLException {
+        return c.prepareStatement(arg0, arg1);
+    }
 
-	public void releaseSavepoint(Savepoint arg0) throws SQLException {
-		c.releaseSavepoint(arg0);
-	}
+    public PreparedStatement prepareStatement(String arg0) throws SQLException {
+        return c.prepareStatement(arg0);
+    }
 
-	public void rollback() throws SQLException {
-		c.rollback();
-	}
+    public void releaseSavepoint(Savepoint arg0) throws SQLException {
+        c.releaseSavepoint(arg0);
+    }
 
-	public void rollback(Savepoint arg0) throws SQLException {
-		c.rollback(arg0);
-	}
+    public void rollback() throws SQLException {
+        c.rollback();
+    }
 
-	public void setAutoCommit(boolean arg0) throws SQLException {
-		c.setAutoCommit(arg0);
-	}
+    public void rollback(Savepoint arg0) throws SQLException {
+        c.rollback(arg0);
+    }
 
-	public void setCatalog(String arg0) throws SQLException {
-		c.setCatalog(arg0);
-	}
+    public void setAutoCommit(boolean arg0) throws SQLException {
+        c.setAutoCommit(arg0);
+    }
 
-	public void setClientInfo(Properties arg0) throws SQLClientInfoException {
-		c.setClientInfo(arg0);
-	}
+    public void setCatalog(String arg0) throws SQLException {
+        c.setCatalog(arg0);
+    }
 
-	public void setClientInfo(String arg0, String arg1) throws SQLClientInfoException {
-		c.setClientInfo(arg0, arg1);
-	}
+    public void setClientInfo(Properties arg0) throws SQLClientInfoException {
+        c.setClientInfo(arg0);
+    }
 
-	public void setHoldability(int arg0) throws SQLException {
-		c.setHoldability(arg0);
-	}
+    public void setClientInfo(String arg0, String arg1) throws SQLClientInfoException {
+        c.setClientInfo(arg0, arg1);
+    }
 
-	public void setReadOnly(boolean arg0) throws SQLException {
-		c.setReadOnly(arg0);
-	}
+    public void setHoldability(int arg0) throws SQLException {
+        c.setHoldability(arg0);
+    }
 
-	public Savepoint setSavepoint() throws SQLException {
-		return c.setSavepoint();
-	}
+    public void setReadOnly(boolean arg0) throws SQLException {
+        c.setReadOnly(arg0);
+    }
 
-	public Savepoint setSavepoint(String arg0) throws SQLException {
-		return c.setSavepoint(arg0);
-	}
+    public Savepoint setSavepoint() throws SQLException {
+        return c.setSavepoint();
+    }
 
-	public void setTransactionIsolation(int arg0) throws SQLException {
-		c.setTransactionIsolation(arg0);
-	}
+    public Savepoint setSavepoint(String arg0) throws SQLException {
+        return c.setSavepoint(arg0);
+    }
 
-	public void setTypeMap(Map<String, Class<?>> arg0) throws SQLException {
-		c.setTypeMap(arg0);
-	}
+    public void setTransactionIsolation(int arg0) throws SQLException {
+        c.setTransactionIsolation(arg0);
+    }
 
-	public <T> T unwrap(Class<T> arg0) throws SQLException {
-		return c.unwrap(arg0);
-	}
+    public void setTypeMap(Map<String, Class<?>> arg0) throws SQLException {
+        c.setTypeMap(arg0);
+    }
+
+    public <T> T unwrap(Class<T> arg0) throws SQLException {
+        return c.unwrap(arg0);
+    }
 }
 
 class ConnectionPool implements Runnable {
-	private int					m_InitialConnectionCount	= 10;
-	private Vector<Connection>	m_AvailableConnections		= new Vector<Connection>();
-	private Vector<Connection>	m_UsedConnections			= new Vector<Connection>();
-	private myDataSource		ds;
-	private Object				synchCheckOut				= new Object();
-	private Object				synchCheckIn				= new Object();
-	private Object				synchAdd					= new Object();
 
-	// Constructor
-	public ConnectionPool(String urlString, String user, String passwd, String driver, String host, String port, String dbname) throws SQLException {
-		makeDS(driver, urlString, user, passwd, host, port, dbname);
-		for (int cnt = 0; cnt < m_InitialConnectionCount; cnt++) {
-			// Add a new connection to the available list.
-			m_AvailableConnections.addElement(getConnection());
-		}
-	}
+    private final int m_InitialConnectionCount = 10;
+    private final Vector<Connection> m_AvailableConnections = new Vector<Connection>();
+    private final Vector<Connection> m_UsedConnections = new Vector<Connection>();
+    private myDataSource ds;
+    private final Object synchCheckOut = new Object();
+    private final Object synchCheckIn = new Object();
+    private final Object synchAdd = new Object();
 
-	private void makeDS(String driver, String urlString, String user, String pass, String host, String port, String dbname) throws SQLException {
-		if (ds == null) {
-			ds = new myDataSource(driver, urlString, user, pass, host, port, dbname);
-		}
-	}
+    // Constructor
+    public ConnectionPool(String urlString, String user, String passwd, String driver, String host, String port, String dbname) throws SQLException {
+        makeDS(driver, urlString, user, passwd, host, port, dbname);
+        for (int cnt = 0; cnt < m_InitialConnectionCount; cnt++) {
+            // Add a new connection to the available list.
+            m_AvailableConnections.addElement(getConnection());
+        }
+    }
 
-	private Connection getConnection() throws SQLException {
-		ZeniPooledConnection rtn = new ZeniPooledConnection(ds.getConnection(), this);
-		return rtn;
-	}
+    private void makeDS(String driver, String urlString, String user, String pass, String host, String port, String dbname) throws SQLException {
+        if (ds == null) {
+            ds = new myDataSource(driver, urlString, user, pass, host, port, dbname);
+        }
+    }
 
-	public Connection checkout() throws SQLException {
-		Connection newConnxn = null;
-		synchronized (synchCheckOut) {
-			if (!(getAvailableCount() > 0)) {
-				try {
-					while (!(getAvailableCount() > 0)) {
-						synchronized (synchCheckIn) {
-							synchCheckIn.wait(500);
-						}
-					}
-					if (getAvailableCount() > 0)
-						newConnxn = getAvailable();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			} else {
-				newConnxn = getAvailable();
-			}
-		}
-		return newConnxn;
-	}
+    private Connection getConnection() throws SQLException {
+        ZeniPooledConnection rtn = new ZeniPooledConnection(ds.getConnection(), this);
+        return rtn;
+    }
 
-	public void checkin(Connection c) {
-		if (c != null) {
-			addAvailable(c);
-		}
-		synchronized (synchCheckIn) {
-			synchCheckIn.notifyAll();
-		}
-	}
+    public Connection checkout() throws SQLException {
+        Connection newConnxn = null;
+        synchronized (synchCheckOut) {
+            if (!(getAvailableCount() > 0)) {
+                try {
+                    while (!(getAvailableCount() > 0)) {
+                        synchronized (synchCheckIn) {
+                            synchCheckIn.wait(500);
+                        }
+                    }
+                    if (getAvailableCount() > 0) {
+                        newConnxn = getAvailable();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                newConnxn = getAvailable();
+            }
+        }
+        return newConnxn;
+    }
 
-	public int getAvailableCount() {
-		synchronized (synchAdd) {
-			return m_AvailableConnections.size();
-		}
-	}
+    public void checkin(Connection c) {
+        if (c != null) {
+            addAvailable(c);
+        }
+        synchronized (synchCheckIn) {
+            synchCheckIn.notifyAll();
+        }
+    }
 
-	public void addAvailable(Connection c) {
-		synchronized (synchAdd) {
-			m_UsedConnections.removeElement(c);
-			m_AvailableConnections.addElement(c);
-		}
-	}
+    public int getAvailableCount() {
+        synchronized (synchAdd) {
+            return m_AvailableConnections.size();
+        }
+    }
 
-	public Connection getAvailable() {
-		synchronized (synchAdd) {
-			synchronized (synchCheckOut) {
-				Connection newConnxn = m_AvailableConnections.lastElement();
-				m_UsedConnections.addElement(newConnxn);
-				m_AvailableConnections.removeElement(newConnxn);
-				return newConnxn;
-			}
-		}
-	}
+    public void addAvailable(Connection c) {
+        synchronized (synchAdd) {
+            m_UsedConnections.removeElement(c);
+            m_AvailableConnections.addElement(c);
+        }
+    }
 
-	public void run() {
-		boolean continuar = true;
-		try {
-			while (continuar) {
-				synchronized (this) {
-					while (m_AvailableConnections.size() > m_InitialConnectionCount) {
-						Connection c = (Connection) m_AvailableConnections.lastElement();
-						m_AvailableConnections.removeElement(c);
-						c.close();
-					}
-				}
-				continuar = false;
-			}
-		} catch (SQLException sqle) {
-			sqle.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    public Connection getAvailable() {
+        synchronized (synchAdd) {
+            synchronized (synchCheckOut) {
+                Connection newConnxn = m_AvailableConnections.lastElement();
+                m_UsedConnections.addElement(newConnxn);
+                m_AvailableConnections.removeElement(newConnxn);
+                return newConnxn;
+            }
+        }
+    }
 
-	private class myDataSource implements DataSource {
-		DataSource	dataSource;
+    public void run() {
+        boolean continuar = true;
+        try {
+            while (continuar) {
+                synchronized (this) {
+                    while (m_AvailableConnections.size() > m_InitialConnectionCount) {
+                        Connection c = (Connection) m_AvailableConnections.lastElement();
+                        m_AvailableConnections.removeElement(c);
+                        c.close();
+                    }
+                }
+                continuar = false;
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-		public myDataSource(String driver, String url, String user, String pass, String host, String port, String dbname) throws SQLException {
-			if (driver.equalsIgnoreCase("ORACLE"))
-				dataSource = newOracleDS(user, pass, host, port, dbname);
-			else if (driver.equalsIgnoreCase("ORACLEL"))
-				dataSource = newOracleURLDS(url, user, pass);
-			else if (driver.equalsIgnoreCase("MYSQL"))
-				dataSource = newMySqlDS(user, pass, host, port, dbname);
-			else
-				throw new SQLException("There is no Driver for: '" + driver + "'");
-		}
+    private class myDataSource implements DataSource {
 
-		public synchronized PrintWriter getLogWriter() throws SQLException {
-			return dataSource.getLogWriter();
-		}
+        DataSource dataSource;
 
-		public synchronized int getLoginTimeout() throws SQLException {
-			return dataSource.getLoginTimeout();
-		}
+        public myDataSource(String driver, String url, String user, String pass, String host, String port, String dbname) throws SQLException {
+            if (driver.equalsIgnoreCase("ORACLE")) {
+                dataSource = newOracleDS(user, pass, host, port, dbname);
+            } else if (driver.equalsIgnoreCase("ORACLEL")) {
+                dataSource = newOracleURLDS(url, user, pass);
+            } else if (driver.equalsIgnoreCase("MYSQL")) {
+                dataSource = newMySqlDS(user, pass, host, port, dbname);
+            } else {
+                throw new SQLException("There is no Driver for: '" + driver + "'");
+            }
+        }
 
-		public synchronized void setLogWriter(PrintWriter arg0) throws SQLException {
-			dataSource.setLogWriter(arg0);
-		}
+        public synchronized PrintWriter getLogWriter() throws SQLException {
+            return dataSource.getLogWriter();
+        }
 
-		public synchronized void setLoginTimeout(int seconds) throws SQLException {
-			dataSource.setLoginTimeout(seconds);
-		}
+        public synchronized int getLoginTimeout() throws SQLException {
+            return dataSource.getLoginTimeout();
+        }
 
-		public Connection getConnection() throws SQLException {
-			return dataSource.getConnection();
-		}
+        public synchronized void setLogWriter(PrintWriter arg0) throws SQLException {
+            dataSource.setLogWriter(arg0);
+        }
 
-		public Connection getConnection(String username, String password) throws SQLException {
-			return dataSource.getConnection(username, password);
-		}
+        public synchronized void setLoginTimeout(int seconds) throws SQLException {
+            dataSource.setLoginTimeout(seconds);
+        }
 
-		private DataSource newOracleDS(String user, String pass, String host, String port, String dbname) throws SQLException {
-			OracleDataSource dsora = new OracleDataSource();
-			dsora.setDriverType("thin");
-			dsora.setServerName(host);
-			dsora.setNetworkProtocol("tcp");
-			dsora.setDatabaseName(dbname);
-			dsora.setPortNumber(Integer.parseInt(port));
-			dsora.setUser(user);
-			dsora.setPassword(pass);
-			return dsora;
-		}
+        public Connection getConnection() throws SQLException {
+            return dataSource.getConnection();
+        }
 
-		private DataSource newOracleURLDS(String url, String user, String pass) throws SQLException {
-			OracleDataSource dsora = new OracleDataSource();
-			dsora.setURL(url);
-			dsora.setUser(user);
-			dsora.setPassword(pass);
-			return dsora;
-		}
+        public Connection getConnection(String username, String password) throws SQLException {
+            return dataSource.getConnection(username, password);
+        }
 
-		private DataSource newMySqlDS(String user, String pass, String host, String port, String dbname) throws SQLException {
-			MysqlDataSource dsmysql = new MysqlDataSource();
-			dsmysql.setServerName(host);
-			dsmysql.setPortNumber(Integer.parseInt(port));
-			dsmysql.setDatabaseName(dbname);
-			dsmysql.setUser(user);
-			dsmysql.setPassword(pass);
+        private DataSource newOracleDS(String user, String pass, String host, String port, String dbname) throws SQLException {
+            OracleDataSource dsora = new OracleDataSource();
+            dsora.setDriverType("thin");
+            dsora.setServerName(host);
+            dsora.setNetworkProtocol("tcp");
+            dsora.setDatabaseName(dbname);
+            dsora.setPortNumber(Integer.parseInt(port));
+            dsora.setUser(user);
+            dsora.setPassword(pass);
+            return dsora;
+        }
 
-			return dsmysql;
-		}
+        private DataSource newOracleURLDS(String url, String user, String pass) throws SQLException {
+            OracleDataSource dsora = new OracleDataSource();
+            dsora.setURL(url);
+            dsora.setUser(user);
+            dsora.setPassword(pass);
+            return dsora;
+        }
+
+        private DataSource newMySqlDS(String user, String pass, String host, String port, String dbname) throws SQLException {
+            MysqlDataSource dsmysql = new MysqlDataSource();
+            dsmysql.setServerName(host);
+            dsmysql.setPortNumber(Integer.parseInt(port));
+            dsmysql.setDatabaseName(dbname);
+            dsmysql.setUser(user);
+            dsmysql.setPassword(pass);
+
+            return dsmysql;
+        }
 
 //		@Override
 //		public Logger getParentLogger() throws SQLFeatureNotSupportedException {
 //			return dataSource.getParentLogger();
 //		}
-		@Override
-		public boolean isWrapperFor(Class<?> arg0) throws SQLException {
-			return dataSource.isWrapperFor(arg0);
-		}
+        @Override
+        public boolean isWrapperFor(Class<?> arg0) throws SQLException {
+            return dataSource.isWrapperFor(arg0);
+        }
 
-		@Override
-		public <T> T unwrap(Class<T> arg0) throws SQLException {
-			return dataSource.unwrap(arg0);
-		}     
+        @Override
+        public <T> T unwrap(Class<T> arg0) throws SQLException {
+            return dataSource.unwrap(arg0);
+        }
 
-       
-       
-	}
+    }
 }

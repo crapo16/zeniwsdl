@@ -825,17 +825,8 @@ public abstract class ServiceImplMenuInformacion extends
         }
         String opciones;
         if (idContrato == null || idContrato.equals(ZeniContextServer.VACIO)) {
-            StringBuilder sb = new StringBuilder()
-                    .append(" and (c.vendedor_id=")
-                    .append(cuenta.getId())
-                    .append(" or c.comprador_id=")
-                    .append(cuenta.getId())
-                    .append(") and trunc(c.fechaoperacion) >= to_date('")
-                    .append(DateUtil.ToString.ddMMyyyy(rangoFecha.getDesde()))
-                    .append("','dd-mm-yyyy') and trunc(c.fechaoperacion) <= to_date('")
-                    .append(DateUtil.ToString.ddMMyyyy(rangoFecha.getHasta()))
-                    .append("','dd-mm-yyyy') ").append(listaDeProductos);
-            opciones = sb.toString();
+            String sb = " and (c.vendedor_id=" + cuenta.getId() + " or c.comprador_id=" + cuenta.getId() + ") and trunc(c.fechaoperacion) >= to_date('" + DateUtil.ToString.ddMMyyyy(rangoFecha.getDesde()) + "','dd-mm-yyyy') and trunc(c.fechaoperacion) <= to_date('" + DateUtil.ToString.ddMMyyyy(rangoFecha.getHasta()) + "','dd-mm-yyyy') " + listaDeProductos;
+            opciones = sb;
         } else {
             opciones = " and c.id = " + idContrato;
         }

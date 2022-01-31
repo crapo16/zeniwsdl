@@ -165,19 +165,7 @@ public class ServiceFacturaRegistro {
 			throws ZeniDBExeption {
 		final List<FacturaRegistroType> registros = new ArrayList<FacturaRegistroType>();
 
-		StringBuilder querySBuilder = new StringBuilder()
-				.append(" select mo.precio, mo.preciooprima, mo.caratula,c.numerocontrato, ")
-				.append(" wd.estadoDestino, mo.volumen, mr.id idregistro,mr.fechaalta,mr.nroregistro  ")
-				.append(" from mat_registro mr ")
-				.append(" inner join mat_operacion mo                  ON mo.id= mr.matoperacion_id ")
-				.append(" inner join rel_matoperacion_factura rof ON mo.id= rof.matoperacion_id ")
-				.append(" inner join factura_producto fp                 ON fp.id= rof.factura_id ")
-				.append(" inner join workflow_state ws                  ON ws.id = mr.state_id  ")
-				.append(" inner join workflow_definition wd         ON wd.id = ws.workflowdefinition_id ")
-				.append(" left JOIN MAT_CONTRATO  mc         ON  mc.id = mo.MATCONTRATO_ID ")
-				.append(" left join contrato c                                   ON c.id = mc.CONTRATO_ID ")
-				.append(" where fp.id = " + id + " ")
-				.append(" order by mr.NROREGISTRO ");
+		String querySBuilder = " select mo.precio, mo.preciooprima, mo.caratula,c.numerocontrato,  wd.estadoDestino, mo.volumen, mr.id idregistro,mr.fechaalta,mr.nroregistro   from mat_registro mr  inner join mat_operacion mo                  ON mo.id= mr.matoperacion_id  inner join rel_matoperacion_factura rof ON mo.id= rof.matoperacion_id  inner join factura_producto fp                 ON fp.id= rof.factura_id  inner join workflow_state ws                  ON ws.id = mr.state_id   inner join workflow_definition wd         ON wd.id = ws.workflowdefinition_id  left JOIN MAT_CONTRATO  mc         ON  mc.id = mo.MATCONTRATO_ID  left join contrato c                                   ON c.id = mc.CONTRATO_ID " + (" where fp.id = " + id + " ") + " order by mr.NROREGISTRO ";
 
 		final ResulsetObjectBuilder resb = new ResulsetObjectBuilder() {
 			@Override
@@ -201,7 +189,7 @@ public class ServiceFacturaRegistro {
 			}
 		};
 		ZeniContextServer.getInstance().printErrorLog("ANTES DE EJECUTAR: ");
-		ZeniQueryExcecutor.excecuteSelect(querySBuilder.toString(), resb);
+		ZeniQueryExcecutor.excecuteSelect(querySBuilder, resb);
 		ZeniContextServer.getInstance().printErrorLog("TERMINO: ");
 		return registros;
 	}
@@ -212,19 +200,7 @@ public class ServiceFacturaRegistro {
 		final List<FacturaRegistroType> registros = new ArrayList<FacturaRegistroType>();
 		final List<Integer> ids = new ArrayList<Integer>();
 
-		StringBuilder querySBuilder = new StringBuilder()
-				.append(" select mo.precio, mo.preciooprima, mo.caratula,c.numerocontrato, nvl(mr.liquida_a_id,0) liquida_a_id, ")
-				.append(" wd.estadoDestino, mo.volumen, mr.id idregistro,mr.fechaalta,mr.nroregistro ")
-				.append(" from mat_registro mr ")
-				.append(" inner join mat_operacion mo                  ON mo.id= mr.matoperacion_id ")
-				.append(" inner join rel_matoperacion_factura rof ON mo.id= rof.matoperacion_id ")
-				.append(" inner join factura_producto fp                 ON fp.id= rof.factura_id ")
-				.append(" inner join workflow_state ws                  ON ws.id = mr.state_id  ")
-				.append(" inner join workflow_definition wd         ON wd.id = ws.workflowdefinition_id ")
-				.append(" left JOIN MAT_CONTRATO  mc         ON  mc.id = mo.MATCONTRATO_ID ")
-				.append(" left join contrato c                                   ON c.id = mc.CONTRATO_ID ")
-				.append(" where fp.id = " + id + " ")
-				.append(" order by mr.NROREGISTRO ");
+		String querySBuilder = " select mo.precio, mo.preciooprima, mo.caratula,c.numerocontrato, nvl(mr.liquida_a_id,0) liquida_a_id,  wd.estadoDestino, mo.volumen, mr.id idregistro,mr.fechaalta,mr.nroregistro  from mat_registro mr  inner join mat_operacion mo                  ON mo.id= mr.matoperacion_id  inner join rel_matoperacion_factura rof ON mo.id= rof.matoperacion_id  inner join factura_producto fp                 ON fp.id= rof.factura_id  inner join workflow_state ws                  ON ws.id = mr.state_id   inner join workflow_definition wd         ON wd.id = ws.workflowdefinition_id  left JOIN MAT_CONTRATO  mc         ON  mc.id = mo.MATCONTRATO_ID  left join contrato c                                   ON c.id = mc.CONTRATO_ID " + (" where fp.id = " + id + " ") + " order by mr.NROREGISTRO ";
 
 		final ResulsetObjectBuilder resb = new ResulsetObjectBuilder() {
 			@Override
@@ -249,7 +225,7 @@ public class ServiceFacturaRegistro {
 			}
 		};
 		ZeniContextServer.getInstance().printErrorLog("getRegistroCE ANTES DE EJECUTAR: ");
-		ZeniQueryExcecutor.excecuteSelect(querySBuilder.toString(), resb);
+		ZeniQueryExcecutor.excecuteSelect(querySBuilder, resb);
 		ZeniContextServer.getInstance().printErrorLog("getRegistroCE TERMINO: ");
 
 		String liqsql = "   select mr1.id idregistro, mr1.fechaalta, mr1.nroregistro,mo1.preciooprima "
@@ -377,19 +353,7 @@ public class ServiceFacturaRegistro {
 			throws ZeniDBExeption {
 		final List<FacturaRegistroType> registros = new ArrayList<FacturaRegistroType>();
 
-		StringBuilder querySBuilder = new StringBuilder()
-				.append(" select mo.precio, mo.preciooprima, mo.caratula,c.numerocontrato, ")
-				.append(" wd.estadoDestino, mo.volumen, mr.id idregistro,mr.fechaalta,mr.nroregistro  ")
-				.append(" from mat_registro mr ")
-				.append(" inner join mat_operacion mo                  ON mo.id= mr.matoperacion_id ")
-				.append(" inner join rel_matoperacion_factura rof ON mo.id= rof.matoperacion_id ")
-				.append(" inner join factura_producto fp                 ON fp.id= rof.factura_id ")
-				.append(" inner join workflow_state ws                  ON ws.id = mr.state_id  ")
-				.append(" inner join workflow_definition wd         ON wd.id = ws.workflowdefinition_id ")
-				.append(" left JOIN MAT_CONTRATO  mc         ON  mc.id = mo.MATCONTRATO_ID ")
-				.append(" left join contrato c                                   ON c.id = mc.CONTRATO_ID ")
-				.append(" where fp.id = " + id + " ")
-				.append(" order by mr.NROREGISTRO ");
+		String querySBuilder = " select mo.precio, mo.preciooprima, mo.caratula,c.numerocontrato,  wd.estadoDestino, mo.volumen, mr.id idregistro,mr.fechaalta,mr.nroregistro   from mat_registro mr  inner join mat_operacion mo                  ON mo.id= mr.matoperacion_id  inner join rel_matoperacion_factura rof ON mo.id= rof.matoperacion_id  inner join factura_producto fp                 ON fp.id= rof.factura_id  inner join workflow_state ws                  ON ws.id = mr.state_id   inner join workflow_definition wd         ON wd.id = ws.workflowdefinition_id  left JOIN MAT_CONTRATO  mc         ON  mc.id = mo.MATCONTRATO_ID  left join contrato c                                   ON c.id = mc.CONTRATO_ID " + (" where fp.id = " + id + " ") + " order by mr.NROREGISTRO ";
 
 		final ResulsetObjectBuilder resb = new ResulsetObjectBuilder() {
 			@Override
@@ -413,7 +377,7 @@ public class ServiceFacturaRegistro {
 			}
 		};
 		ZeniContextServer.getInstance().printErrorLog("getRegistroTC ANTES DE EJECUTAR: ");
-		ZeniQueryExcecutor.excecuteSelect(querySBuilder.toString(), resb);
+		ZeniQueryExcecutor.excecuteSelect(querySBuilder, resb);
 		ZeniContextServer.getInstance().printErrorLog("getRegistroTC TERMINO: ");
 		return registros;
 	}
@@ -423,19 +387,7 @@ public class ServiceFacturaRegistro {
 		final List<FacturaRegistroType> registros = new ArrayList<FacturaRegistroType>();
 		final List<Integer> ids = new ArrayList<Integer>();
 
-		StringBuilder querySBuilder = new StringBuilder()
-				.append(" select mo.precio, mo.preciooprima, mo.caratula,c.numerocontrato, nvl(mr.liquida_a_id,0) liquida_a_id, ")
-				.append(" wd.estadoDestino, mo.volumen, mr.id idregistro,mr.fechaalta,mr.nroregistro ")
-				.append(" from mat_registro mr ")
-				.append(" inner join mat_operacion mo                  ON mo.id= mr.matoperacion_id ")
-				.append(" inner join rel_matoperacion_factura rof ON mo.id= rof.matoperacion_id ")
-				.append(" inner join factura_producto fp                 ON fp.id= rof.factura_id ")
-				.append(" inner join workflow_state ws                  ON ws.id = mr.state_id  ")
-				.append(" inner join workflow_definition wd         ON wd.id = ws.workflowdefinition_id ")
-				.append(" left JOIN MAT_CONTRATO  mc         ON  mc.id = mo.MATCONTRATO_ID ")
-				.append(" left join contrato c                                   ON c.id = mc.CONTRATO_ID ")
-				.append(" where fp.id = " + id + " ")
-				.append(" order by mr.NROREGISTRO ");
+		String querySBuilder = " select mo.precio, mo.preciooprima, mo.caratula,c.numerocontrato, nvl(mr.liquida_a_id,0) liquida_a_id,  wd.estadoDestino, mo.volumen, mr.id idregistro,mr.fechaalta,mr.nroregistro  from mat_registro mr  inner join mat_operacion mo                  ON mo.id= mr.matoperacion_id  inner join rel_matoperacion_factura rof ON mo.id= rof.matoperacion_id  inner join factura_producto fp                 ON fp.id= rof.factura_id  inner join workflow_state ws                  ON ws.id = mr.state_id   inner join workflow_definition wd         ON wd.id = ws.workflowdefinition_id  left JOIN MAT_CONTRATO  mc         ON  mc.id = mo.MATCONTRATO_ID  left join contrato c                                   ON c.id = mc.CONTRATO_ID " + (" where fp.id = " + id + " ") + " order by mr.NROREGISTRO ";
 
 		final ResulsetObjectBuilder resb = new ResulsetObjectBuilder() {
 			@Override
@@ -461,7 +413,7 @@ public class ServiceFacturaRegistro {
 			}
 		};
 		ZeniContextServer.getInstance().printErrorLog("getRegistroC ANTES DE EJECUTAR: ");
-		ZeniQueryExcecutor.excecuteSelect(querySBuilder.toString(), resb);
+		ZeniQueryExcecutor.excecuteSelect(querySBuilder, resb);
 		ZeniContextServer.getInstance().printErrorLog("getRegistroC TERMINO: ");
 
 		String liqsql = "   select mr1.id idregistro, mr1.fechaalta, mr1.nroregistro,mo1.preciooprima "
@@ -507,19 +459,7 @@ public class ServiceFacturaRegistro {
 		final List<Integer> ids = new ArrayList<Integer>();
 		final boolean opcion2 = opcion;
 
-		StringBuilder querySBuilder = new StringBuilder()
-				.append(" select mo.precio, mo.preciooprima, mo.caratula,c.numerocontrato, nvl(mr.liquida_a_id,0) liquida_a_id, ")
-				.append(" wd.estadoDestino, mo.volumen, mr.id idregistro,mr.fechaalta,mr.nroregistro ")
-				.append(" from mat_registro mr ")
-				.append(" inner join mat_operacion mo                  ON mo.id= mr.matoperacion_id ")
-				.append(" inner join rel_matoperacion_factura rof ON mo.id= rof.matoperacion_id ")
-				.append(" inner join factura_producto fp                 ON fp.id= rof.factura_id ")
-				.append(" inner join workflow_state ws                  ON ws.id = mr.state_id  ")
-				.append(" inner join workflow_definition wd         ON wd.id = ws.workflowdefinition_id ")
-				.append(" left JOIN MAT_CONTRATO  mc         ON  mc.id = mo.MATCONTRATO_ID ")
-				.append(" left join contrato c                                   ON c.id = mc.CONTRATO_ID ")
-				.append(" where fp.id = " + id + " ")
-				.append(" order by mr.NROREGISTRO ");
+		String querySBuilder = " select mo.precio, mo.preciooprima, mo.caratula,c.numerocontrato, nvl(mr.liquida_a_id,0) liquida_a_id,  wd.estadoDestino, mo.volumen, mr.id idregistro,mr.fechaalta,mr.nroregistro  from mat_registro mr  inner join mat_operacion mo                  ON mo.id= mr.matoperacion_id  inner join rel_matoperacion_factura rof ON mo.id= rof.matoperacion_id  inner join factura_producto fp                 ON fp.id= rof.factura_id  inner join workflow_state ws                  ON ws.id = mr.state_id   inner join workflow_definition wd         ON wd.id = ws.workflowdefinition_id  left JOIN MAT_CONTRATO  mc         ON  mc.id = mo.MATCONTRATO_ID  left join contrato c                                   ON c.id = mc.CONTRATO_ID " + (" where fp.id = " + id + " ") + " order by mr.NROREGISTRO ";
 
 		final float porc = getPorcentaje(id, usd);
 		final ResulsetObjectBuilder resb = new ResulsetObjectBuilder() {
@@ -550,7 +490,7 @@ public class ServiceFacturaRegistro {
 			}
 		};
 		ZeniContextServer.getInstance().printErrorLog("getRegistroC ANTES DE EJECUTAR: ");
-		ZeniQueryExcecutor.excecuteSelect(querySBuilder.toString(), resb);
+		ZeniQueryExcecutor.excecuteSelect(querySBuilder, resb);
 		ZeniContextServer.getInstance().printErrorLog("getRegistroC TERMINO: ");
 
 		return registros;

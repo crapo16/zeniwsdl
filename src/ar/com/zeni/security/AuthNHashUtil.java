@@ -48,7 +48,7 @@ public class AuthNHashUtil {
 		return instance;
 	}
 //	private long aleatorio = (long) (Math.cos(Math.random())*100000l);
-	private Random random = new Random();
+	private final Random random = new Random();
 	public HashNSeedType getNewHashNSeed(String ip) throws ZeniDBExeption {
 		removeOldHashes();
 		final Calendar calendar = new GregorianCalendar();
@@ -191,10 +191,10 @@ public class AuthNHashUtil {
 		}
 	}
 	private static AuthNHashUtil instance;
-	private static Object readSync = new Object();
-	private static Object readStoreSync = new Object();
-	private static Object updataSync = new Object();
-	private static Object updataStoreSync = new Object();
+	private static final Object readSync = new Object();
+	private static final Object readStoreSync = new Object();
+	private static final Object updataSync = new Object();
+	private static final Object updataStoreSync = new Object();
 	private HashMap<String, HashNSeedInternal>	hashMap;
 	private long	lastRemoveDate;
 	public interface HashAuthTable {

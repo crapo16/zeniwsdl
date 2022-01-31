@@ -19,12 +19,12 @@ import ar.com.zeni.mail.MailProperties;
  */
 public class RestExecute {
 
-	private String rest_uri;
-	private String rest_timeOut;
+	private final String rest_uri;
+	private final String rest_timeOut;
 
 	private static final Logger LOG = Logger.getLogger("org.apache.cxf.services.ZeniWSDL.ZeniWSDLSOAP.ZeniWSDL");
 	private RestTemplate restTemplate;
-	private HttpComponentsClientHttpRequestFactory factory;
+	private final HttpComponentsClientHttpRequestFactory factory;
 
 	/**
 	 *

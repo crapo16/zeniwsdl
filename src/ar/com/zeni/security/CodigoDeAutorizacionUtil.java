@@ -169,8 +169,8 @@ public class CodigoDeAutorizacionUtil {
 		final String	FECHA_EXPIRACION_FIELD	= "EXPIRATION_DATE";
 	}
 	class CodigoDeAutorizacion {
-		private String	codi;
-		private String	fechi;
+		private final String	codi;
+		private final String	fechi;
 		CodigoDeAutorizacion(String codi, String fechi){
 			this.codi = codi;
 			this.fechi = fechi;

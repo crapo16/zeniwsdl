@@ -31,11 +31,11 @@ public interface ZeniWSDL {
     @RequestWrapper(localName = "actualizarPassword", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ActualizarPassword")
     @WebMethod(action = "http://www.zeni.com.ar/ZeniWSDL/actualizarPassword")
     @ResponseWrapper(localName = "actualizarPasswordResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ActualizarPasswordResponse")
-    public java.lang.String actualizarPassword(
+    public String actualizarPassword(
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "passwordNuevo", targetNamespace = "")
-        java.lang.String passwordNuevo
+        String passwordNuevo
     ) throws FaultType_Exception;
 
     @WebResult(name = "out", targetNamespace = "")
@@ -46,9 +46,9 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "fileId", targetNamespace = "")
-        java.lang.String fileId,
+        String fileId,
         @WebParam(name = "categoryId", targetNamespace = "")
-        java.lang.String categoryId
+        String categoryId
     ) throws FaultType_Exception;
 
     /**
@@ -64,7 +64,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId
+        String contratoId
     ) throws FaultType_Exception;
 
     /**
@@ -80,7 +80,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId
+        String contratoId
     ) throws FaultType_Exception;
 
     /**
@@ -96,7 +96,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "newId", targetNamespace = "")
-        java.lang.String newId
+        String newId
     ) throws FaultType_Exception;
 
     /**
@@ -126,9 +126,9 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "idCuenta", targetNamespace = "")
-        java.lang.String idCuenta,
+        String idCuenta,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId
+        String contratoId
     ) throws FaultType_Exception;
 
     /**
@@ -152,7 +152,7 @@ public interface ZeniWSDL {
         @WebParam(name = "tipoComprobante", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumCompradorVendedorType tipoComprobante,
         @WebParam(name = "contraparteId", targetNamespace = "")
-        java.lang.String contraparteId,
+        String contraparteId,
         @WebParam(name = "tipoDeComprobante", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumTipoComprobanteType tipoDeComprobante,
         @WebParam(name = "descargado", targetNamespace = "")
@@ -241,9 +241,9 @@ public interface ZeniWSDL {
         @WebParam(name = "rangoFechasAlta", targetNamespace = "")
         ar.com.zeni.zeniwsdl.RangoFechaType rangoFechasAlta,
         @WebParam(name = "campaniaId", targetNamespace = "")
-        java.lang.String campaniaId,
+        String campaniaId,
         @WebParam(name = "contrato", targetNamespace = "")
-        java.lang.String contrato,
+        String contrato,
         @WebParam(name = "productos", targetNamespace = "")
         ar.com.zeni.zeniwsdl.ArrayOfProductoType productos
     ) throws FaultType_Exception;
@@ -260,7 +260,7 @@ public interface ZeniWSDL {
         @WebParam(name = "mercados", targetNamespace = "")
         ar.com.zeni.zeniwsdl.ArrayOfMercadoType mercados,
         @WebParam(name = "tipodeoperacion", targetNamespace = "")
-        java.lang.String tipodeoperacion,
+        String tipodeoperacion,
         @WebParam(name = "condicion", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumCompradorVendedorType condicion,
         @WebParam(name = "tipodecomisiones", targetNamespace = "")
@@ -299,11 +299,11 @@ public interface ZeniWSDL {
         @WebParam(name = "destinos", targetNamespace = "")
         ar.com.zeni.zeniwsdl.ArrayOfDestinoMATType destinos,
         @WebParam(name = "precio", targetNamespace = "")
-        java.lang.String precio,
+        String precio,
         @WebParam(name = "prima", targetNamespace = "")
-        java.lang.String prima,
+        String prima,
         @WebParam(name = "posicion", targetNamespace = "")
-        java.lang.String posicion,
+        String posicion,
         @WebParam(name = "tipoOperacion", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumTipoOperacionType tipoOperacion
     ) throws FaultType_Exception;
@@ -312,11 +312,11 @@ public interface ZeniWSDL {
     @RequestWrapper(localName = "actualizarAccesoUsuario", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ActualizarAccesoUsuario")
     @WebMethod(action = "http://www.zeni.com.ar/ZeniWSDL/actualizarAccesoUsuario")
     @ResponseWrapper(localName = "actualizarAccesoResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ActualizarAccesoResponse")
-    public java.lang.String actualizarAccesoUsuario(
+    public String actualizarAccesoUsuario(
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "usuario", targetNamespace = "")
-        java.lang.String usuario
+        String usuario
     ) throws FaultType_Exception;
 
     /**
@@ -352,11 +352,11 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "idCuenta", targetNamespace = "")
-        java.lang.String idCuenta,
+        String idCuenta,
         @WebParam(name = "comprobanteId", targetNamespace = "")
-        java.lang.String comprobanteId,
+        String comprobanteId,
         @WebParam(name = "tipo", targetNamespace = "")
-        java.lang.String tipo,
+        String tipo,
         @WebParam(name = "esAnexo", targetNamespace = "")
         ar.com.zeni.zeniwsdl.SINOType esAnexo
     ) throws FaultType_Exception;
@@ -376,9 +376,9 @@ public interface ZeniWSDL {
         @WebParam(name = "rangoFechas", targetNamespace = "")
         ar.com.zeni.zeniwsdl.RangoFechaType rangoFechas,
         @WebParam(name = "clienteId", targetNamespace = "")
-        java.lang.String clienteId,
+        String clienteId,
         @WebParam(name = "contratoNro", targetNamespace = "")
-        java.lang.String contratoNro
+        String contratoNro
     ) throws FaultType_Exception;
 
     /**
@@ -426,7 +426,7 @@ public interface ZeniWSDL {
         @WebParam(name = "destinos", targetNamespace = "")
         ar.com.zeni.zeniwsdl.ArrayOfDestinoMATType destinos,
         @WebParam(name = "posicion", targetNamespace = "")
-        java.lang.String posicion
+        String posicion
     ) throws FaultType_Exception;
 
     /**
@@ -438,11 +438,11 @@ public interface ZeniWSDL {
     @RequestWrapper(localName = "obtenerCodigoDeAutorizacion", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ObtenerCodigoDeAutorizacion")
     @WebMethod(action = "http://www.zeni.com.ar/ZeniWSDL/obtenerCodigoDeAutorizacion")
     @ResponseWrapper(localName = "obtenerCodigoDeAutorizacionResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ObtenerCodigoDeAutorizacionResponse")
-    public java.lang.String obtenerCodigoDeAutorizacion(
+    public String obtenerCodigoDeAutorizacion(
         @WebParam(name = "usuario", targetNamespace = "")
-        java.lang.String usuario,
+        String usuario,
         @WebParam(name = "email", targetNamespace = "")
-        java.lang.String email
+        String email
     ) throws FaultType_Exception;
 
     /**
@@ -456,23 +456,23 @@ public interface ZeniWSDL {
     @RequestWrapper(localName = "altaUsuario", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.AltaUsuario")
     @WebMethod(action = "http://www.zeni.com.ar/ZeniWSDL/altaUsuario")
     @ResponseWrapper(localName = "altaUsuarioResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.AltaUsuarioResponse")
-    public java.lang.String altaUsuario(
+    public String altaUsuario(
         @WebParam(name = "clienteId", targetNamespace = "")
-        java.lang.String clienteId,
+        String clienteId,
         @WebParam(name = "usuario", targetNamespace = "")
-        java.lang.String usuario,
+        String usuario,
         @WebParam(name = "nombre", targetNamespace = "")
-        java.lang.String nombre,
+        String nombre,
         @WebParam(name = "apellido", targetNamespace = "")
-        java.lang.String apellido,
+        String apellido,
         @WebParam(name = "email", targetNamespace = "")
-        java.lang.String email,
+        String email,
         @WebParam(name = "password", targetNamespace = "")
-        java.lang.String password,
+        String password,
         @WebParam(name = "codigoDeAutorizacion", targetNamespace = "")
-        java.lang.String codigoDeAutorizacion,
+        String codigoDeAutorizacion,
         @WebParam(name = "hash", targetNamespace = "")
-        java.lang.String hash
+        String hash
     ) throws FaultType_Exception;
 
     /**
@@ -488,9 +488,9 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "idContrato", targetNamespace = "")
-        java.lang.String idContrato,
+        String idContrato,
         @WebParam(name = "idMuestra", targetNamespace = "")
-        java.lang.String idMuestra
+        String idMuestra
     ) throws FaultType_Exception;
 
     /**
@@ -535,7 +535,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId
+        String contratoId
     ) throws FaultType_Exception;
 
     @WebResult(name = "out", targetNamespace = "")
@@ -546,7 +546,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "cuentaId", targetNamespace = "")
-        java.lang.String cuentaId
+        String cuentaId
     ) throws FaultType_Exception;
 
     /**
@@ -560,9 +560,9 @@ public interface ZeniWSDL {
     @ResponseWrapper(localName = "obtenerStringSHA1BASE64DESResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ObtenerStringSHA1BASE64DESResponse")
     public ar.com.zeni.zeniwsdl.StringSHA1BASE64DESType obtenerStringSHA1BASE64DES(
         @WebParam(name = "stringAEncodear", targetNamespace = "")
-        java.lang.String stringAEncodear,
+        String stringAEncodear,
         @WebParam(name = "stringSeedEnBase64", targetNamespace = "")
-        java.lang.String stringSeedEnBase64
+        String stringSeedEnBase64
     ) throws FaultType_Exception;
 
     @WebResult(name = "out", targetNamespace = "")
@@ -573,7 +573,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "idEntrega", targetNamespace = "")
-        java.lang.String idEntrega
+        String idEntrega
     ) throws FaultType_Exception;
 
     /**
@@ -588,7 +588,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "idContrato", targetNamespace = "")
-        java.lang.String idContrato
+        String idContrato
     ) throws FaultType_Exception;
 
     /**
@@ -604,7 +604,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId
+        String contratoId
     ) throws FaultType_Exception;
 
     /**
@@ -629,9 +629,9 @@ public interface ZeniWSDL {
         @WebParam(name = "filtroDeMovimiento", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumDeMovimientoType filtroDeMovimiento,
         @WebParam(name = "comprobanteNro", targetNamespace = "")
-        java.lang.String comprobanteNro,
+        String comprobanteNro,
         @WebParam(name = "contratoNro", targetNamespace = "")
-        java.lang.String contratoNro
+        String contratoNro
     ) throws FaultType_Exception;
 
     /**
@@ -647,7 +647,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "cuentaId", targetNamespace = "")
-        java.lang.String cuentaId
+        String cuentaId
     ) throws FaultType_Exception;
 
     /**
@@ -681,7 +681,7 @@ public interface ZeniWSDL {
         @WebParam(name = "tipoCompradorVendedor", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumCompradorVendedorType tipoCompradorVendedor,
         @WebParam(name = "actividadId", targetNamespace = "")
-        java.lang.String actividadId
+        String actividadId
     ) throws FaultType_Exception;
 
     /**
@@ -758,11 +758,11 @@ public interface ZeniWSDL {
     @ResponseWrapper(localName = "autorizarUsuarioResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.AutorizarUsuarioResponse")
     public ar.com.zeni.zeniwsdl.AuthType autorizarUsuario(
         @WebParam(name = "usuario", targetNamespace = "")
-        java.lang.String usuario,
+        String usuario,
         @WebParam(name = "hash", targetNamespace = "")
-        java.lang.String hash,
+        String hash,
         @WebParam(name = "password", targetNamespace = "")
-        java.lang.String password
+        String password
     ) throws FaultType_Exception;
 
     /**
@@ -777,7 +777,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId
+        String contratoId
     ) throws FaultType_Exception;
 
     /**
@@ -795,7 +795,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "norm", targetNamespace = "")
-        java.lang.String norm
+        String norm
     ) throws FaultType_Exception;
 
     @WebResult(name = "out", targetNamespace = "")
@@ -812,7 +812,7 @@ public interface ZeniWSDL {
         @WebParam(name = "RangoDeFechas", targetNamespace = "")
         ar.com.zeni.zeniwsdl.RangoFechaType RangoDeFechas,
         @WebParam(name = "IdOperacion", targetNamespace = "")
-        java.lang.String IdOperacion
+        String IdOperacion
 
     ) throws FaultType_Exception;
 
@@ -908,7 +908,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId
+        String contratoId
     ) throws FaultType_Exception;
 
     /**
@@ -941,7 +941,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "id", targetNamespace = "")
-        java.lang.String id
+        String id
     ) throws FaultType_Exception;
 
     /**
@@ -956,7 +956,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "idCliente", targetNamespace = "")
-        java.lang.String idCliente
+        String idCliente
     ) throws FaultType_Exception;
 
     @WebResult(name = "out", targetNamespace = "")
@@ -982,7 +982,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "id", targetNamespace = "")
-        java.lang.String id
+        String id
     ) throws FaultType_Exception;
 
     /**
@@ -1011,11 +1011,11 @@ public interface ZeniWSDL {
     @RequestWrapper(localName = "marcarComprobanteDescargado", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.MarcarComprobanteDescargado")
     @WebMethod(action = "http://www.zeni.com.ar/ZeniWSDL/marcarComprobanteDescargado")
     @ResponseWrapper(localName = "marcarComprobanteDescargadoResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.MarcarComprobanteDescargadoResponse")
-    public java.lang.String marcarComprobanteDescargado(
+    public String marcarComprobanteDescargado(
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "comprobanteId", targetNamespace = "")
-        java.lang.String comprobanteId,
+        String comprobanteId,
         @WebParam(name = "descargado", targetNamespace = "")
         ar.com.zeni.zeniwsdl.SINOType descargado
     ) throws FaultType_Exception;
@@ -1033,7 +1033,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "clienteId", targetNamespace = "")
-        java.lang.String clienteId
+        String clienteId
     ) throws FaultType_Exception;
 
     /**
@@ -1049,7 +1049,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "ayudaId", targetNamespace = "")
-        java.lang.String ayudaId
+        String ayudaId
     ) throws FaultType_Exception;
 
     /**
@@ -1065,7 +1065,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "idContrato", targetNamespace = "")
-        java.lang.String idContrato
+        String idContrato
     ) throws FaultType_Exception;
 
     /**
@@ -1096,7 +1096,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "catId", targetNamespace = "")
-        java.lang.String catId
+        String catId
     ) throws FaultType_Exception;
 
     /**
@@ -1134,7 +1134,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId
+        String contratoId
     ) throws FaultType_Exception;
 
     /**
@@ -1150,15 +1150,15 @@ public interface ZeniWSDL {
         @WebParam(name = "cuentas", targetNamespace = "")
         ar.com.zeni.zeniwsdl.ArrayOfIdCuenta cuentas,
         @WebParam(name = "nroZeni", targetNamespace = "")
-        java.lang.String nroZeni,
+        String nroZeni,
         @WebParam(name = "nroContratoComprador", targetNamespace = "")
-        java.lang.String nroContratoComprador,
+        String nroContratoComprador,
         @WebParam(name = "nroContratoVendedor", targetNamespace = "")
-        java.lang.String nroContratoVendedor,
+        String nroContratoVendedor,
         @WebParam(name = "incluir", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumIncluirType incluir,
         @WebParam(name = "precio", targetNamespace = "")
-        java.lang.String precio,
+        String precio,
         @WebParam(name = "ordenamiento", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumOrdenamientoContratosType ordenamiento,
         @WebParam(name = "rangoFechas", targetNamespace = "")
@@ -1166,21 +1166,21 @@ public interface ZeniWSDL {
         @WebParam(name = "productos", targetNamespace = "")
         ar.com.zeni.zeniwsdl.ArrayOfProductoType productos,
         @WebParam(name = "vendedorId", targetNamespace = "")
-        java.lang.String vendedorId,
+        String vendedorId,
         @WebParam(name = "compradorId", targetNamespace = "")
-        java.lang.String compradorId,
+        String compradorId,
         @WebParam(name = "calidadId", targetNamespace = "")
-        java.lang.String calidadId,
+        String calidadId,
         @WebParam(name = "operatoriaId", targetNamespace = "")
-        java.lang.String operatoriaId,
+        String operatoriaId,
         @WebParam(name = "campaniaId", targetNamespace = "")
-        java.lang.String campaniaId,
+        String campaniaId,
         @WebParam(name = "condDePagoId", targetNamespace = "")
-        java.lang.String condDePagoId,
+        String condDePagoId,
         @WebParam(name = "compraVende", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumCompradorVendedorType compraVende,
         @WebParam(name = "cartaDePorte", targetNamespace = "")
-        java.lang.String cartaDePorte,
+        String cartaDePorte,
         @WebParam(name = "rangoFechasEntrega", targetNamespace = "")
         ar.com.zeni.zeniwsdl.RangoFechaType rangoFechasEntrega
     ) throws FaultType_Exception;
@@ -1197,7 +1197,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "idCliente", targetNamespace = "")
-        java.lang.String idCliente
+        String idCliente
     ) throws FaultType_Exception;
 
     /**
@@ -1221,7 +1221,7 @@ public interface ZeniWSDL {
         @WebParam(name = "opciones", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumOpcionesListadoEntrega opciones,
         @WebParam(name = "campaniaId", targetNamespace = "")
-        java.lang.String campaniaId,
+        String campaniaId,
         @WebParam(name = "productos", targetNamespace = "")
         ar.com.zeni.zeniwsdl.ArrayOfProductoType productos
     ) throws FaultType_Exception;
@@ -1251,9 +1251,9 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId,
+        String contratoId,
         @WebParam(name = "cuentaId", targetNamespace = "")
-        java.lang.String cuentaId
+        String cuentaId
     ) throws FaultType_Exception;
 
     @WebResult(name = "out", targetNamespace = "")
@@ -1264,7 +1264,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "cuentaId", targetNamespace = "")
-        java.lang.String cuentaId
+        String cuentaId
     ) throws FaultType_Exception;
 
     /**
@@ -1276,13 +1276,13 @@ public interface ZeniWSDL {
     @RequestWrapper(localName = "resetearPassword", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ResetearPassword")
     @WebMethod(action = "http://www.zeni.com.ar/ZeniWSDL/resetearPassword")
     @ResponseWrapper(localName = "resetearPasswordResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ResetearPasswordResponse")
-    public java.lang.String resetearPassword(
+    public String resetearPassword(
         @WebParam(name = "usuario", targetNamespace = "")
-        java.lang.String usuario,
+        String usuario,
         @WebParam(name = "email", targetNamespace = "")
-        java.lang.String email,
+        String email,
         @WebParam(name = "codigoDeAutorizacion", targetNamespace = "")
-        java.lang.String codigoDeAutorizacion
+        String codigoDeAutorizacion
     ) throws FaultType_Exception;
 
     @WebResult(name = "out", targetNamespace = "")
@@ -1291,7 +1291,7 @@ public interface ZeniWSDL {
     @ResponseWrapper(localName = "NewOperationResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.NewOperationResponse")
     public ar.com.zeni.zeniwsdl.FileType newOperation(
         @WebParam(name = "in", targetNamespace = "")
-        java.lang.String in
+        String in
     ) throws FaultType_Exception;
 
     /**
@@ -1317,7 +1317,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "cuentaId", targetNamespace = "")
-        java.lang.String cuentaId
+        String cuentaId
     ) throws FaultType_Exception;
 
     /**
@@ -1350,11 +1350,11 @@ public interface ZeniWSDL {
         @WebParam(name = "destinos", targetNamespace = "")
         ar.com.zeni.zeniwsdl.ArrayOfDestinoMATType destinos,
         @WebParam(name = "precio", targetNamespace = "")
-        java.lang.String precio,
+        String precio,
         @WebParam(name = "prima", targetNamespace = "")
-        java.lang.String prima,
+        String prima,
         @WebParam(name = "posicion", targetNamespace = "")
-        java.lang.String posicion,
+        String posicion,
         @WebParam(name = "tipoOperacion", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumTipoOperacionType tipoOperacion,
         @WebParam(name = "tipoConsulta", targetNamespace = "")
@@ -1369,7 +1369,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "cuentaId", targetNamespace = "")
-        java.lang.String cuentaId
+        String cuentaId
     ) throws FaultType_Exception;
 
     /**
@@ -1385,7 +1385,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId
+        String contratoId
     ) throws FaultType_Exception;
 
     /**
@@ -1413,7 +1413,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "categoryId", targetNamespace = "")
-        java.lang.String categoryId
+        String categoryId
     ) throws FaultType_Exception;
 
     /**
@@ -1428,9 +1428,9 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "idContrato", targetNamespace = "")
-        java.lang.String idContrato,
+        String idContrato,
         @WebParam(name = "idEntrega", targetNamespace = "")
-        java.lang.String idEntrega
+        String idEntrega
     ) throws FaultType_Exception;
 
     /**
@@ -1489,11 +1489,11 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "cuenta", targetNamespace = "")
-        java.lang.String cuenta,
+        String cuenta,
         @WebParam(name = "rangoFecha", targetNamespace = "")
         ar.com.zeni.zeniwsdl.RangoFechaType rangoFecha,
         @WebParam(name = "producto", targetNamespace = "")
-        java.lang.String producto
+        String producto
     ) throws FaultType_Exception;
 
     @WebResult(name = "out", targetNamespace = "")
@@ -1504,7 +1504,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "cuenta", targetNamespace = "")
-        java.lang.String cuenta,
+        String cuenta,
         @WebParam(name = "fecha", targetNamespace = "")
         ar.com.zeni.zeniwsdl.FechaTimeType fecha
     ) throws FaultType_Exception;
@@ -1520,7 +1520,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "nombreArchivo", targetNamespace = "")
-        java.lang.String nombreArchivo
+        String nombreArchivo
     ) throws FaultType_Exception;
 
 //    /**
@@ -1567,15 +1567,15 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "email", targetNamespace = "")
-        java.lang.String email,
+        String email,
         @WebParam(name = "bodytitle", targetNamespace = "")
-        java.lang.String bodytitle,
+        String bodytitle,
         @WebParam(name = "body", targetNamespace = "")
-        java.lang.String body,
+        String body,
         @WebParam(name = "table", targetNamespace = "")
         ar.com.zeni.zeniwsdl.ArrayOfString table,
         @WebParam(name = "cuenta", targetNamespace = "")
-        java.lang.String cuenta
+        String cuenta
     ) throws FaultType_Exception;
 
     /**
@@ -1603,7 +1603,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "cuentaId", targetNamespace = "")
-        java.lang.String cuentaId
+        String cuentaId
     ) throws FaultType_Exception;
 
     /**
@@ -1632,7 +1632,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "id", targetNamespace = "")
-        java.lang.String id
+        String id
     ) throws FaultType_Exception;
 
     /**
@@ -1646,11 +1646,11 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "email", targetNamespace = "")
-        java.lang.String email,
+        String email,
         @WebParam(name = "cuenta", targetNamespace = "")
-        java.lang.String cuenta,
+        String cuenta,
         @WebParam(name = "nombre", targetNamespace = "")
-        java.lang.String nombre
+        String nombre
     ) throws FaultType_Exception;
 
     /**
@@ -1662,11 +1662,11 @@ public interface ZeniWSDL {
     @ResponseWrapper(localName = "recuperaPasswordResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.RecuperaPasswordResponse")
     public int recuperaPassword(
         @WebParam(name = "email", targetNamespace = "")
-        java.lang.String email,
+        String email,
         @WebParam(name = "usuario", targetNamespace = "")
-        java.lang.String usuario,
+        String usuario,
         @WebParam(name = "nombre", targetNamespace = "")
-        java.lang.String nombre
+        String nombre
     ) throws FaultType_Exception;
 
     /**
@@ -1695,13 +1695,13 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "email", targetNamespace = "")
-        java.lang.String email,
+        String email,
         @WebParam(name = "asunto", targetNamespace = "")
-        java.lang.String asunto,
+        String asunto,
         @WebParam(name = "descripcion", targetNamespace = "")
-        java.lang.String descripcion,
+        String descripcion,
         @WebParam(name = "sector", targetNamespace = "")
-        java.lang.String sector
+        String sector
     ) throws FaultType_Exception;
 
     @WebResult(name = "out", targetNamespace = "")
@@ -1712,7 +1712,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId
+        String contratoId
     ) throws FaultType_Exception;
 
 
@@ -1725,18 +1725,18 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "contratoId", targetNamespace = "")
-        java.lang.String contratoId
+        String contratoId
     ) throws FaultType_Exception;
 
     @WebResult(name = "out", targetNamespace = "")
     @RequestWrapper(localName = "obtenerContratoId", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ObtenerContratoId")
     @WebMethod(action = "http://www.zeni.com.ar/ZeniWSDL/obtenerContratoId")
     @ResponseWrapper(localName = "obtenerContratoIdResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ObtenerContratoIdResponse")
-    public java.lang.String obtenerContratoId(
+    public String obtenerContratoId(
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "numeroContrato", targetNamespace = "")
-        java.lang.String numeroContrato
+        String numeroContrato
     ) throws FaultType_Exception;
 
     /**
@@ -1751,7 +1751,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "cartaPorte", targetNamespace = "")
-        java.lang.String cartaPorte
+        String cartaPorte
     ) throws FaultType_Exception;
 
     /**
@@ -1762,11 +1762,11 @@ public interface ZeniWSDL {
     @RequestWrapper(localName = "validarCartaPorte", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ValidarCartaPorte")
     @WebMethod(action = "http://www.zeni.com.ar/ZeniWSDL/validarCartaPorte")
     @ResponseWrapper(localName = "validarCartaPorteResponse", targetNamespace = "http://www.zeni.com.ar/ZeniWSDL/", className = "ar.com.zeni.zeniwsdl.ValidarCartaPorteResponse")
-    public java.lang.String validarCartaPorte(
+    public String validarCartaPorte(
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "cartaPorte", targetNamespace = "")
-        java.lang.String cartaPorte
+        String cartaPorte
     ) throws FaultType_Exception;
     
     /**
@@ -1781,9 +1781,9 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "cuentaId", targetNamespace = "")
-        java.lang.String cuentaId,
+        String cuentaId,
         @WebParam(name = "nroContrato", targetNamespace = "")
-        java.lang.String nroContrato,
+        String nroContrato,
         @WebParam(name = "rangoDeFechas", targetNamespace = "")
         ar.com.zeni.zeniwsdl.RangoFechaType rangoDeFechas
     ) throws FaultType_Exception;
@@ -1800,7 +1800,7 @@ public interface ZeniWSDL {
         @WebParam(name = "auth", targetNamespace = "")
         ar.com.zeni.zeniwsdl.AuthType auth,
         @WebParam(name = "comprobante", targetNamespace = "")
-        java.lang.String comprobante,
+        String comprobante,
         @WebParam(name = "tipo", targetNamespace = "")
         ar.com.zeni.zeniwsdl.EnumBoletoCartaPorte tipo
     ) throws FaultType_Exception;

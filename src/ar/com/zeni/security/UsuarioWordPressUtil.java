@@ -279,18 +279,18 @@ public class UsuarioWordPressUtil {
 
 		// @formatter:off
 		sql = " UPDATE wp_usermeta SET meta_value = "+stringValue(username)+" WHERE meta_key = 'nickname' AND user_id =" + id;
-		ZeniQueryExcecutorWordPress.excecuteUpdate(sql.toString());
+		ZeniQueryExcecutorWordPress.excecuteUpdate(sql);
 		sql =(" UPDATE wp_usermeta SET meta_value = "+stringValue(nombre).toUpperCase()+ " WHERE meta_key = 'first_name' AND user_id =" + id);
-		ZeniQueryExcecutorWordPress.excecuteUpdate(sql.toString());
+		ZeniQueryExcecutorWordPress.excecuteUpdate(sql);
 		sql =(" UPDATE wp_usermeta SET meta_value = "+stringValue(apellido).toUpperCase()+ " WHERE meta_key = 'last_name' AND user_id =" + id);
-		ZeniQueryExcecutorWordPress.excecuteUpdate(sql.toString());
+		ZeniQueryExcecutorWordPress.excecuteUpdate(sql);
 //		sql =(" UPDATE wp_usermeta SET meta_value = "+stringValue(username)+" WHERE meta_key = 'nickname' AND user_id =" + id);
 		// @formatter:on
 
-			ZeniQueryExcecutorWordPress.excecuteUpdate(sql.toString());
+			ZeniQueryExcecutorWordPress.excecuteUpdate(sql);
 
 		} catch (Exception e) {
-			throw new ZeniDBExeption(sql.toString(), e);
+			throw new ZeniDBExeption(sql, e);
 		}
 
 	}

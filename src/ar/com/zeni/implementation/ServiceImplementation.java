@@ -3136,9 +3136,9 @@ public class ServiceImplementation extends ServiceImplMenuReportes {
             for (ReferenciaType ref : listaReferencia.getMercater()) {
                 StringBuilder update = new StringBuilder().append("UPDATE MAT_REGISTRO ");
                 update.append(" SET NROSUBCTAREG = ");
-                update.append(ref.getNroReferencia().toString());
+                update.append(ref.getNroReferencia());
                 update.append(" WHERE ID = ");
-                update.append(ref.getIdOperacion().toString());
+                update.append(ref.getIdOperacion());
 
                 ZeniQueryExcecutor.excecuteUpdate(update.toString());
                 _return = SINOType.SI;

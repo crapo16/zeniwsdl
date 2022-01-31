@@ -47,7 +47,7 @@ public class ZeniContextServer {
 		}
 	}
 
-	private static Object syncWP = new Object();
+	private static final Object syncWP = new Object();
 	final public synchronized ConnectionImplementationWordPress getConnectionWP() throws ZeniDBExeption {
 		try {
 			synchronized (syncWP) {
@@ -62,7 +62,7 @@ public class ZeniContextServer {
 	}
 
 
-	private static Object sync = new Object();
+	private static final Object sync = new Object();
 	final public synchronized ConnectionImplementation getConnectionGetter() throws ZeniDBExeption {
 		try {
 			synchronized (sync) {
@@ -124,7 +124,7 @@ public class ZeniContextServer {
 		}
 		return prop;
 	}
-	private static Object sync2 = new Object();
+	private static final Object sync2 = new Object();
 	final private Properties readWPProperties() {
 		synchronized (sync2) {
 			if (propWP==null) {
