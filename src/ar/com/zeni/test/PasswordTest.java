@@ -14,11 +14,9 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.codec.binary.Base64;
 
 import ar.com.zeni.admin.app.server.MbIdGenerator;
 import ar.com.zeni.codecs.GenericCodec;
-import ar.com.zeni.common.ZeniContextServer;
 import ar.com.zeni.common.exceptions.ZeniBaseExeption;
 import ar.com.zeni.common.exceptions.ZeniMailServerExeption;
 import ar.com.zeni.common.exceptions.ZeniUserPasswordErroneo;

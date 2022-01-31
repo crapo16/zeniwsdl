@@ -25,9 +25,6 @@ import javax.sql.DataSource;
 import oracle.jdbc.pool.OracleDataSource;
 import ar.com.zeni.common.ZeniContextServer;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import java.sql.SQLFeatureNotSupportedException;
-import java.util.concurrent.Executor;
-import java.util.logging.Logger;
 
 public class ConnectionImplementation implements ConnectionProperties {
 	static DataSource				_ds	= null;

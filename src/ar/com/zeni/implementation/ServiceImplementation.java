@@ -18,7 +18,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.datatype.XMLGregorianCalendar;
-import javax.xml.ws.Holder;
 import javax.xml.ws.handler.MessageContext;
 
 import ar.com.zeni.common.DateUtil;
@@ -82,7 +81,6 @@ import ar.com.zeni.zeniwsdl.ArrayOfTipoComprobanteType;
 import ar.com.zeni.zeniwsdl.ArrayOfVendedorType;
 import ar.com.zeni.zeniwsdl.AuthType;
 import ar.com.zeni.zeniwsdl.CalidadType;
-import ar.com.zeni.zeniwsdl.CanjeByContratoType;
 import ar.com.zeni.zeniwsdl.ClienteType;
 import ar.com.zeni.zeniwsdl.CompradorType;
 import ar.com.zeni.zeniwsdl.ContraparteType;

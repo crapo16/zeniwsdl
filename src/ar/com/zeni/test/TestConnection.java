@@ -1,11 +1,9 @@
 package ar.com.zeni.test;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import oracle.net.aso.a;
 
 import ar.com.zeni.common.ZeniContextServer;
 import ar.com.zeni.common.exceptions.ZeniDBExeption;
