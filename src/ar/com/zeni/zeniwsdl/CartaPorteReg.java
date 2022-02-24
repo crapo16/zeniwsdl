@@ -1,19 +1,20 @@
-
 package ar.com.zeni.zeniwsdl;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * Data Carta Porte.
- * 					
- * 
- * <p>Clase Java para CartaPorteReg complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * 
+ *
+ *
+ * <p>
+ * Clase Java para CartaPorteReg complex type.
+ *
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que
+ * haya en esta clase.
+ *
  * <pre>
  * &lt;complexType name="CartaPorteReg">
  *   &lt;complexContent>
@@ -39,18 +40,20 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="fechaAplicacion" type="{http://www.zeni.com.ar/ZeniWSDL/}FechaTimeType" minOccurs="0"/>
  *         &lt;element name="usuarioActualizacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fechaBaja" type="{http://www.zeni.com.ar/ZeniWSDL/}FechaTimeType" minOccurs="0"/>
+ *         &lt;element name="ctg" type="{http://www.zeni.com.ar/ZeniWSDL/}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "CartaPorteReg", propOrder = {
     "fechaDescarga",
     "nroCartaPorte",
+    "ctg",
     "numeroContrato",
     "cosecha",
     "ctaVend",
@@ -74,6 +77,7 @@ public class CartaPorteReg {
 
     protected FechaTimeType fechaDescarga;
     protected String nroCartaPorte;
+    protected String ctg;
     protected String numeroContrato;
     protected String cosecha;
     protected String ctaVend;
@@ -95,11 +99,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad fechaDescarga.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FechaTimeType }
-     *     
+     *
+     * @return possible object is {@link FechaTimeType }
+     *
      */
     public FechaTimeType getFechaDescarga() {
         return fechaDescarga;
@@ -107,11 +109,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad fechaDescarga.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FechaTimeType }
-     *     
+     *
+     * @param value allowed object is {@link FechaTimeType }
+     *
      */
     public void setFechaDescarga(FechaTimeType value) {
         this.fechaDescarga = value;
@@ -119,11 +119,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad nroCartaPorte.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getNroCartaPorte() {
         return nroCartaPorte;
@@ -131,11 +129,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad nroCartaPorte.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setNroCartaPorte(String value) {
         this.nroCartaPorte = value;
@@ -143,11 +139,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad numeroContrato.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getNumeroContrato() {
         return numeroContrato;
@@ -155,11 +149,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad numeroContrato.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setNumeroContrato(String value) {
         this.numeroContrato = value;
@@ -167,11 +159,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad cosecha.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getCosecha() {
         return cosecha;
@@ -179,11 +169,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad cosecha.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setCosecha(String value) {
         this.cosecha = value;
@@ -191,11 +179,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad ctaVend.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getCtaVend() {
         return ctaVend;
@@ -203,11 +189,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad ctaVend.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setCtaVend(String value) {
         this.ctaVend = value;
@@ -215,11 +199,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad razonSocialVend.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getRazonSocialVend() {
         return razonSocialVend;
@@ -227,11 +209,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad razonSocialVend.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setRazonSocialVend(String value) {
         this.razonSocialVend = value;
@@ -239,11 +219,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad ctaComp.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getCtaComp() {
         return ctaComp;
@@ -251,11 +229,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad ctaComp.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setCtaComp(String value) {
         this.ctaComp = value;
@@ -263,11 +239,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad razonSocialComp.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getRazonSocialComp() {
         return razonSocialComp;
@@ -275,11 +249,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad razonSocialComp.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setRazonSocialComp(String value) {
         this.razonSocialComp = value;
@@ -287,11 +259,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad contratoComprador.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getContratoComprador() {
         return contratoComprador;
@@ -299,11 +269,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad contratoComprador.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setContratoComprador(String value) {
         this.contratoComprador = value;
@@ -311,11 +279,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad producto.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getProducto() {
         return producto;
@@ -323,11 +289,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad producto.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setProducto(String value) {
         this.producto = value;
@@ -335,11 +299,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad cantidadAplicar.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Float }
-     *     
+     *
+     * @return possible object is {@link Float }
+     *
      */
     public Float getCantidadAplicar() {
         return cantidadAplicar;
@@ -347,11 +309,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad cantidadAplicar.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Float }
-     *     
+     *
+     * @param value allowed object is {@link Float }
+     *
      */
     public void setCantidadAplicar(Float value) {
         this.cantidadAplicar = value;
@@ -359,11 +319,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad cantidad.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Float }
-     *     
+     *
+     * @return possible object is {@link Float }
+     *
      */
     public Float getCantidad() {
         return cantidad;
@@ -371,11 +329,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad cantidad.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Float }
-     *     
+     *
+     * @param value allowed object is {@link Float }
+     *
      */
     public void setCantidad(Float value) {
         this.cantidad = value;
@@ -383,11 +339,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad nroRecibo.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getNroRecibo() {
         return nroRecibo;
@@ -395,11 +349,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad nroRecibo.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setNroRecibo(String value) {
         this.nroRecibo = value;
@@ -407,11 +359,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad estado.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getEstado() {
         return estado;
@@ -419,11 +369,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad estado.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setEstado(String value) {
         this.estado = value;
@@ -431,11 +379,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad procedencia.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getProcedencia() {
         return procedencia;
@@ -443,11 +389,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad procedencia.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setProcedencia(String value) {
         this.procedencia = value;
@@ -455,11 +399,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad destino.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getDestino() {
         return destino;
@@ -467,11 +409,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad destino.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setDestino(String value) {
         this.destino = value;
@@ -479,11 +419,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad estadoEntrega.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getEstadoEntrega() {
         return estadoEntrega;
@@ -491,11 +429,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad estadoEntrega.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setEstadoEntrega(String value) {
         this.estadoEntrega = value;
@@ -503,11 +439,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad fechaAplicacion.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FechaTimeType }
-     *     
+     *
+     * @return possible object is {@link FechaTimeType }
+     *
      */
     public FechaTimeType getFechaAplicacion() {
         return fechaAplicacion;
@@ -515,11 +449,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad fechaAplicacion.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FechaTimeType }
-     *     
+     *
+     * @param value allowed object is {@link FechaTimeType }
+     *
      */
     public void setFechaAplicacion(FechaTimeType value) {
         this.fechaAplicacion = value;
@@ -527,11 +459,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad usuarioActualizacion.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getUsuarioActualizacion() {
         return usuarioActualizacion;
@@ -539,11 +469,9 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad usuarioActualizacion.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setUsuarioActualizacion(String value) {
         this.usuarioActualizacion = value;
@@ -551,11 +479,9 @@ public class CartaPorteReg {
 
     /**
      * Obtiene el valor de la propiedad fechaBaja.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FechaTimeType }
-     *     
+     *
+     * @return possible object is {@link FechaTimeType }
+     *
      */
     public FechaTimeType getFechaBaja() {
         return fechaBaja;
@@ -563,14 +489,20 @@ public class CartaPorteReg {
 
     /**
      * Define el valor de la propiedad fechaBaja.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FechaTimeType }
-     *     
+     *
+     * @param value allowed object is {@link FechaTimeType }
+     *
      */
     public void setFechaBaja(FechaTimeType value) {
         this.fechaBaja = value;
+    }
+
+    public String getCtg() {
+        return ctg;
+    }
+
+    public void setCtg(String ctg) {
+        this.ctg = ctg;
     }
 
 }
