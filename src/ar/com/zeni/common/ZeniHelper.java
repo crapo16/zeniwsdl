@@ -1311,10 +1311,10 @@ public class ZeniHelper {
      *
      * @param wsContext
      * @param auth
-     * @param cartaPorte
+     * @param CTG
      * @return
      */
-    public static ArrayOfCartaPorteReg obtenerCartaPorteId(WebServiceContext wsContext, AuthType auth,
+    public static ArrayOfCartaPorteReg obtenerCTGById(WebServiceContext wsContext, AuthType auth,
             String cartaPorte) throws FaultType_Exception {
 
         final ArrayOfCartaPorteReg _return = new ArrayOfCartaPorteReg();
@@ -1395,6 +1395,147 @@ public class ZeniHelper {
                                     DateUtil.Parsers.yyyyMMddHHmmsss(rs.getString("fechaDescarga"))));
                             _reg.setNroCartaPorte(rs.getString("nro_Carta_Porte"));
                             _reg.setCtg(rs.getString("ctg"));
+                            _reg.setNroRecibo(rs.getString("nro_Recibo"));
+                            _reg.setNumeroContrato(rs.getString("numeroContrato"));
+                            _reg.setProcedencia(rs.getString("procedencia"));
+                            _reg.setProducto(rs.getString("producto"));
+                            _reg.setRazonSocialComp(rs.getString("razonSocial_comprador"));
+                            _reg.setRazonSocialVend(rs.getString("razonSocial_vendedor"));
+                            _reg.setUsuarioActualizacion(rs.getString("usuario_ult_actualizacion"));
+                            _registros.add(_reg);
+
+                        } catch (Exception e) {
+                            ZeniContextServer.getInstance().printErrorLog(e);
+                            throw new SQLException(e.getMessage(), e);
+                        }
+                    }
+                }
+            };
+
+            ZeniQueryExcecutor.excecuteSelect(querySBuilder.toString(), resb);
+            _return.getRegistros().addAll(_registros);
+
+        } catch (ZeniIPDifiereExeption ex) {
+            FaultType f = new FaultType();
+            f.setMensaje(ex.getMessage());
+            f.setCodigoError(ex.getCode());
+            ZeniContextServer.getInstance().printErrorLog(ex);
+            throw new FaultType_Exception(ex.getMessage(), f, ex);
+        } catch (ZeniHashInvalidExeption ex) {
+            FaultType f = new FaultType();
+            f.setMensaje(ex.getMessage());
+            f.setCodigoError(ex.getCode());
+            ZeniContextServer.getInstance().printErrorLog(ex);
+            throw new FaultType_Exception(ex.getMessage(), f, ex);
+        } catch (ZeniAuthTypeInvalidExeption ex) {
+            FaultType f = new FaultType();
+            f.setMensaje(ex.getMessage());
+            f.setCodigoError(ex.getCode());
+            ZeniContextServer.getInstance().printErrorLog(ex);
+            throw new FaultType_Exception(ex.getMessage(), f, ex);
+        } catch (ZeniDBExeption ex) {
+            FaultType f = new FaultType();
+            f.setMensaje(ex.getMessage());
+            f.setCodigoError(ex.getCode());
+            ZeniContextServer.getInstance().printErrorLog(ex);
+            throw new FaultType_Exception(ex.getMessage(), f, ex);
+        } catch (Exception ex) {
+            FaultType f = new FaultType();
+            f.setMensaje(ex.getMessage());
+            f.setCodigoError(FAULTCONSTANTS.ERROR_ERRONEO);
+            ZeniContextServer.getInstance().printErrorLog(ex);
+            throw new FaultType_Exception(ex.getMessage(), f, ex);
+        }
+        return _return;
+
+    }
+
+    /**
+     *
+     * @param wsContext
+     * @param auth
+     * @param cartaPorte
+     * @return
+     */
+    public static ArrayOfCartaPorteReg obtenerCartaPorteId(WebServiceContext wsContext, AuthType auth,
+            String cartaPorte) throws FaultType_Exception {
+
+        final ArrayOfCartaPorteReg _return = new ArrayOfCartaPorteReg();
+        try {
+
+            if (cartaPorte == null || cartaPorte.equals(ZeniContextServer.VACIO)) {
+                throw new ZeniServerExeption("la carta de porte  no pueden ser nulo o vacia",
+                        FAULTCONSTANTS.ERROR_ERRONEO);
+            }
+
+            final MessageContext mc = wsContext.getMessageContext();
+            final HttpServletRequest req = (HttpServletRequest) mc.get(MessageContext.SERVLET_REQUEST);
+
+            AuthNHashUtil.getInstance().isAuthValid(auth, req.getRemoteAddr());
+            final List<CartaPorteReg> _registros = new ArrayList<CartaPorteReg>();
+
+            final StringBuilder querySBuilder = new StringBuilder().append("SELECT  ")
+                    .append(" entrega.fechaDescargaMercaderia as fechaDescarga, ")
+                    .append(" entrega.nroCartaDePorte as nro_Carta_Porte,")
+                    .append(" contrato.numeroContrato as numeroContrato, ").append(" contrato.anioCosecha as Cosecha, ")
+                    .append(" ctacte_Vend.nroCuenta as cuenta_vendedor, ")
+                    .append(" cl_Vend.razonSocial as razonSocial_vendedor, ")
+                    .append(" ctacte_Comp.nroCuenta as cuenta_comprador, ")
+                    .append("  cl_Comp.razonSocial as razonSocial_comprador, ")
+                    .append(" contrato.nroContratoComprador as contrato_comprador, ")
+                    .append(" produ.nombre as producto, ").append(" entrPartida.cantidad as cantidad_a_aplicar, ")
+                    .append(" unidMedida.formato as formato_unidMedida, ")
+                    .append(" entrega.cantidadEntrega as cantidad, ").append(" entrega.nroRecibo as nro_Recibo, ")
+                    .append(" contrato_s13_.estadoDestino as estado, ").append(" proced.nombre as procedencia, ")
+                    .append("  desti.nombre as destino, ")
+                    .append("  state_work3_.estadoDestino as estado_de_la_entrega, ")
+                    .append(" entrPartida.fechaAlta as fecha_aplicacion, ").append(" (SELECT ").append("    CASE ")
+                    .append("        WHEN EP.USERMODIF IS NOT NULL THEN EP.USERMODIF ")
+                    .append("        ELSE EP.USERALTA ").append("    END ").append("    FROM ENTREGA_PARTIDA EP ")
+                    .append("    WHERE EP.id = entrPartida.id) as usuario_ult_actualizacion, ")
+                    .append(" entrPartida.fechaBaja as fechaBaja ").append("  from entrega_partida entrPartida ")
+                    .append(" left outer join workflow_state state2_ on entrPartida.state_id = state2_.id ")
+                    .append(" left outer join workflow_definition state_work3_ on state2_.workflowDefinition_id = state_work3_.id ")
+                    .append(" left outer join contrato contrato on entrPartida.contrato_id = contrato.id ")
+                    .append(" left outer join workflow_state contrato_s12_ on contrato.state_id = contrato_s12_.id ")
+                    .append(" left outer join workflow_definition contrato_s13_ on contrato_s12_.workflowDefinition_id = contrato_s13_.id ")
+                    .append(" left outer join cuenta_cliente ctacte_Comp on contrato.comprador_id = ctacte_Comp.id ")
+                    .append(" left outer join cliente cl_Comp on ctacte_Comp.cliente_id = cl_Comp.id ")
+                    .append(" left outer join unidad_de_medida unidMedida on contrato.unidadDeMedida_id = unidMedida.id ")
+                    .append(" left outer join cuenta_cliente ctacte_Vend on contrato.vendedor_id = ctacte_Vend.id ")
+                    .append(" left outer join cliente cl_Vend on ctacte_Vend.cliente_id = cl_Vend.id ")
+                    .append(" left outer join entrega entrega on entrPartida.entrega_id = entrega.id ")
+                    .append(" left outer join ciudad desti on entrega.destinoCiudad_id = desti.id ")
+                    .append(" left outer join ciudad proced on entrega.procedencia_id = proced.id ")
+                    .append("  left outer join producto produ on entrega.producto_id = produ.id ")
+                    .append(" left outer join entrega_partida escubierta5_ on entrPartida.esCubiertaPor_id = escubierta5_.id ")
+                    .append("  where entrega.nroCartaDePorte = '" + cartaPorte + "'   ")
+                    .append(" order by fechaDescarga asc, nroCartaDePorte ASC ");
+
+            final ResulsetObjectBuilder resb = new ResulsetObjectBuilder() {
+                @Override
+                public void thisIsTheResulset(ResultSet rs) throws SQLException {
+
+                    CartaPorteReg _reg = null;
+                    while (rs.next()) {
+                        try {
+                            _reg = new CartaPorteReg();
+                            _reg.setCantidad(rs.getFloat("cantidad"));
+                            _reg.setCantidadAplicar(rs.getFloat("cantidad_a_aplicar"));
+                            _reg.setContratoComprador(rs.getString("contrato_comprador"));
+                            _reg.setCosecha(rs.getString("Cosecha"));
+                            _reg.setCtaComp(rs.getString("cuenta_vendedor"));
+                            _reg.setCtaVend(rs.getString("cuenta_comprador"));
+                            _reg.setDestino(rs.getString("destino"));
+                            _reg.setEstado(rs.getString("estado"));
+                            _reg.setEstadoEntrega(rs.getString("estado_de_la_entrega"));
+                            _reg.setFechaAplicacion(DateUtil.Converters.DateToFechaTimeType(
+                                    DateUtil.Parsers.yyyyMMddHHmmsss(rs.getString("fecha_aplicacion"))));
+                            _reg.setFechaBaja(DateUtil.Converters
+                                    .DateToFechaTimeType(DateUtil.Parsers.yyyyMMddHHmmsss(rs.getString("fechaBaja"))));
+                            _reg.setFechaDescarga(DateUtil.Converters.DateToFechaTimeType(
+                                    DateUtil.Parsers.yyyyMMddHHmmsss(rs.getString("fechaDescarga"))));
+                            _reg.setNroCartaPorte(rs.getString("nro_Carta_Porte"));
                             _reg.setNroRecibo(rs.getString("nro_Recibo"));
                             _reg.setNumeroContrato(rs.getString("numeroContrato"));
                             _reg.setProcedencia(rs.getString("procedencia"));

@@ -50,6 +50,7 @@ import ar.com.zeni.zeniwsdl.ArrayOfCampaniaType;
 import ar.com.zeni.zeniwsdl.ArrayOfCartaPorteReg;
 import ar.com.zeni.zeniwsdl.ArrayOfCompradorType;
 import ar.com.zeni.zeniwsdl.ArrayOfContraparteType;
+import ar.com.zeni.zeniwsdl.ArrayOfContratoType;
 import ar.com.zeni.zeniwsdl.ArrayOfCuentaType;
 import ar.com.zeni.zeniwsdl.ArrayOfDestinoMATType;
 import ar.com.zeni.zeniwsdl.ArrayOfDetalleFacturaType;
@@ -90,7 +91,10 @@ import ar.com.zeni.zeniwsdl.DestinoMATType;
 import ar.com.zeni.zeniwsdl.DetalleFacturaType;
 import ar.com.zeni.zeniwsdl.EnumBoletoCartaPorte;
 import ar.com.zeni.zeniwsdl.EnumCompraVentaType;
+import ar.com.zeni.zeniwsdl.EnumCompradorVendedorType;
 import ar.com.zeni.zeniwsdl.EnumEstadoType;
+import ar.com.zeni.zeniwsdl.EnumIncluirType;
+import ar.com.zeni.zeniwsdl.EnumOrdenamientoContratosType;
 import ar.com.zeni.zeniwsdl.EnumSucursalType;
 import ar.com.zeni.zeniwsdl.EnumTipoOperacionMatType;
 import ar.com.zeni.zeniwsdl.EnumTipoOperacionMercadoATerminoType;
@@ -3560,7 +3564,15 @@ public class ServiceImplementation extends ServiceImplMenuReportes {
     public ArrayOfCartaPorteReg obtenerCartaPorteById(AuthType auth, String cartaPorte) throws FaultType_Exception {
         ZeniContextServer.getInstance().printInfoLog("Executing operation obtenerCartaPorteById cartaPorte[" + cartaPorte + "]");
         return ZeniHelper.obtenerCartaPorteId(wsContext, auth, cartaPorte);
+    }   
+    
+    
+    @Override
+    public ArrayOfCartaPorteReg obtenerCTGById(AuthType auth, String cartaPorte) throws FaultType_Exception {
+        ZeniContextServer.getInstance().printInfoLog("Executing operation obtenerCTGById cartaPorte[" + cartaPorte + "]");
+        return ZeniHelper.obtenerCTGById(wsContext, auth, cartaPorte);
     }
+    
 
     @Override
     public String validarCartaPorte(AuthType auth, String cartaPorte) throws FaultType_Exception {
@@ -3578,6 +3590,11 @@ public class ServiceImplementation extends ServiceImplMenuReportes {
     public FileType descargarBoletoCartaOferta(AuthType auth, String comprobante, EnumBoletoCartaPorte tipo)
             throws FaultType_Exception {
         return ZeniHelper.descargarBoletoCartaOferta(wsContext, auth, comprobante, tipo);
+    }
+
+    @Override
+    public ArrayOfContratoType obtenerContratos(AuthType at, ArrayOfIdCuenta aoic, String string, String string1, String string2, EnumIncluirType eit, String string3, EnumOrdenamientoContratosType eoct, Object o, ArrayOfProductoType aopt, String string4, String string5, String string6, String string7, String string8, String string9, EnumCompradorVendedorType ecvt, String string10, Object o1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
