@@ -1175,31 +1175,25 @@ class TestCaseComplete {
 			java.lang.String _obtenerContratos_campaniaId = ZeniContextServer.VACIO;
 			java.lang.String _obtenerContratos_condDePagoId = ZeniContextServer.VACIO;
 			String _obtenerContratos_cartaDePorte = ZeniContextServer.VACIO;
-			try {
-				ar.com.zeni.zeniwsdl.ArrayOfContratoType _obtenerContratos__retur2 = port
-						.obtenerContratos(AUTH_GENERAL, array_cuentas,
-								_obtenerContratos_nroZeni,
-								_obtenerContratos_nroContratoComprador,
-								_obtenerContratos_nroContratoVendedor,
-								_obtenerContratos_incluir,
-								_obtenerContratos_precio,
-								_obtenerContratos_ordenamiento, null,
-								PRODUCTOS_GENERAL,
-								_obtenerContratos_vendedorId,
-								_obtenerContratos_compradorId,
-								_obtenerContratos_calidadId,
-								_obtenerContratos_operatoriaId,
-								_obtenerContratos_campaniaId,
-								_obtenerContratos_condDePagoId,
-								EnumCompradorVendedorType.AMBOS,
-								_obtenerContratos_cartaDePorte,null);
-				// System.out.println("obtenerContratos.result=" +
-				// _obtenerContratos__retur2);
-			} catch (FaultType_Exception e) {
-				System.out
-						.println("Expected exception: FaultType has occurred.");
-				System.out.println(e.toString());
-			}
+                        ar.com.zeni.zeniwsdl.ArrayOfContratoType _obtenerContratos__retur2 = port
+                                .obtenerContratos(AUTH_GENERAL, array_cuentas,
+                                        _obtenerContratos_nroZeni,
+                                        _obtenerContratos_nroContratoComprador,
+                                        _obtenerContratos_nroContratoVendedor,
+                                        _obtenerContratos_incluir,
+                                        _obtenerContratos_precio,
+                                        _obtenerContratos_ordenamiento, null,
+                                        PRODUCTOS_GENERAL,
+                                        _obtenerContratos_vendedorId,
+                                        _obtenerContratos_compradorId,
+                                        _obtenerContratos_calidadId,
+                                        _obtenerContratos_operatoriaId,
+                                        _obtenerContratos_campaniaId,
+                                        _obtenerContratos_condDePagoId,
+                                        EnumCompradorVendedorType.AMBOS,
+                                        _obtenerContratos_cartaDePorte,null);
+                        // System.out.println("obtenerContratos.result=" +
+                        // _obtenerContratos__retur2);
 		}
 		{
 			System.out.println("Invoking obtenerOperatoriasCobroMercaderia...");

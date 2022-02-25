@@ -96,7 +96,7 @@ public abstract class ServiceImplMenuMisOperaciones extends ServiceImplMenuInfor
             ar.com.zeni.zeniwsdl.EnumOrdenamientoContratosType ordenamiento, RangoFechaType rangoFechas,
             ArrayOfProductoType productos, java.lang.String vendedorId, java.lang.String compradorId,
             java.lang.String calidadId, java.lang.String operatoriaId, java.lang.String campaniaId,
-            java.lang.String condDePagoId, EnumCompradorVendedorType compraVende, java.lang.String cartaDePorte,
+            java.lang.String condDePagoId, EnumCompradorVendedorType compraVende, java.lang.String cartaDePorte, java.lang.String ctg,
             RangoFechaType rangoFechasEntrega) throws FaultType_Exception {
         ZeniContextServer.getInstance().printInfoLog("Executing operation obtenerContratos");
         ZeniContextServer.getInstance().printVerboLog(auth);
@@ -116,6 +116,7 @@ public abstract class ServiceImplMenuMisOperaciones extends ServiceImplMenuInfor
         ZeniContextServer.getInstance().printVerboLog(condDePagoId);
         ZeniContextServer.getInstance().printVerboLog(compraVende);
         ZeniContextServer.getInstance().printVerboLog(cartaDePorte);
+        ZeniContextServer.getInstance().printVerboLog(ctg);
         ZeniContextServer.getInstance().printVerboLog(rangoFechasEntrega);
         try {
             final MessageContext mc = wsContext.getMessageContext();

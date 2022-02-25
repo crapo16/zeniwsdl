@@ -65,6 +65,7 @@ import javax.xml.bind.annotation.XmlType;
     "condDePagoId",
     "compraVende",
     "cartaDePorte",
+    "ctg",
     "rangoFechasEntrega"
 })
 @XmlRootElement(name = "obtenerContratos")
@@ -90,6 +91,7 @@ public class ObtenerContratos {
     protected String condDePagoId;
     protected EnumCompradorVendedorType compraVende;
     protected String cartaDePorte;
+    protected String ctg;
     protected RangoFechaType rangoFechasEntrega;
 
     /**
@@ -102,6 +104,14 @@ public class ObtenerContratos {
      */
     public AuthType getAuth() {
         return auth;
+    }
+
+    public String getCtg() {
+        return ctg;
+    }
+
+    public void setCtg(String ctg) {
+        this.ctg = ctg;
     }
 
     /**
